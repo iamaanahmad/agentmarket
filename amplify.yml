@@ -5,9 +5,10 @@ frontend:
     preBuild:
       commands:
         - echo "Installing dependencies..."
-        - npm ci
-        - echo "Checking Node.js and npm versions..."
+        - npm ci --legacy-peer-deps
+        - echo "Node.js version:"
         - node --version
+        - echo "npm version:"
         - npm --version
     build:
       commands:

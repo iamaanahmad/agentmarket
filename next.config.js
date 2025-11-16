@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Remove standalone for Amplify - it hosts the full Next.js app
   webpack: (config) => {
     config.resolve.fallback = {
       fs: false,
