@@ -1,0 +1,456 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "SecurityGuard AI - Production Dashboard",
+    "tags": ["security", "ai", "solana", "production"],
+    "style": "dark",
+    "timezone": "browser",
+    "editable": true,
+    "graphTooltip": 1,
+    "panels": [
+      {
+        "id": 1,
+        "title": "System Overview",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "up{job=\"security-ai\"}",
+            "legendFormat": "Service Status"
+          },
+          {
+            "expr": "sum(rate(http_requests_total[5m]))",
+            "legendFormat": "Total RPS"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "95th Response Time"
+          },
+          {
+            "expr": "sum(rate(security_scans_total[1h]))",
+            "legendFormat": "Scans/Hour"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {"displayMode": "list", "orientation": "horizontal"},
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 0.8},
+                {"color": "red", "value": 0.9}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 24, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Request Rate by Endpoint",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total[5m])",
+            "legendFormat": "{{method}} {{endpoint}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Requests/sec",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2,
+              "pointSize": 5,
+              "showPoints": "never"
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4}
+      },
+      {
+        "id": 3,
+        "title": "Response Time Percentiles",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "50th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "95th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "99th percentile"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Seconds",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            },
+            "unit": "s"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4}
+      },
+      {
+        "id": 4,
+        "title": "Error Rate & Status Codes",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{status=~\"4..\"}[5m])",
+            "legendFormat": "4xx Errors"
+          },
+          {
+            "expr": "rate(http_requests_total{status=~\"5..\"}[5m])",
+            "legendFormat": "5xx Errors"
+          },
+          {
+            "expr": "rate(http_requests_total{status=\"200\"}[5m])",
+            "legendFormat": "Success (200)"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Requests/sec",
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "lineWidth": 2
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 12}
+      },
+      {
+        "id": 5,
+        "title": "Business Metrics",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(security_scans_total[5m])",
+            "legendFormat": "Scans/sec"
+          },
+          {
+            "expr": "rate(revenue_total[1h])",
+            "legendFormat": "Revenue/hour (SOL)"
+          },
+          {
+            "expr": "active_users_count",
+            "legendFormat": "Active Users"
+          },
+          {
+            "expr": "rate(threats_detected_total[5m])",
+            "legendFormat": "Threats Detected/sec"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Count",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 12}
+      },
+      {
+        "id": 6,
+        "title": "ML Model Performance",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "ml_model_accuracy",
+            "legendFormat": "Model Accuracy"
+          },
+          {
+            "expr": "ml_prediction_duration_seconds",
+            "legendFormat": "Prediction Time (s)"
+          },
+          {
+            "expr": "pattern_matching_duration_seconds",
+            "legendFormat": "Pattern Matching Time (s)"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Performance",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 20}
+      },
+      {
+        "id": 7,
+        "title": "Resource Usage",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "100 - (avg by(instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+            "legendFormat": "CPU Usage %"
+          },
+          {
+            "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
+            "legendFormat": "Memory Usage %"
+          },
+          {
+            "expr": "rate(container_cpu_usage_seconds_total{pod=~\"security-guard-ai-.*\"}[5m]) * 100",
+            "legendFormat": "Pod CPU %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Percentage",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            },
+            "max": 100,
+            "min": 0,
+            "unit": "percent"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 20}
+      },
+      {
+        "id": 8,
+        "title": "Database Performance",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "database_connections_active",
+            "legendFormat": "Active Connections"
+          },
+          {
+            "expr": "rate(database_queries_total[5m])",
+            "legendFormat": "Queries/sec"
+          },
+          {
+            "expr": "database_query_duration_seconds",
+            "legendFormat": "Query Duration (s)"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Database Metrics",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 28}
+      },
+      {
+        "id": 9,
+        "title": "Cache Performance",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "redis_connected_clients",
+            "legendFormat": "Redis Connections"
+          },
+          {
+            "expr": "rate(redis_commands_processed_total[5m])",
+            "legendFormat": "Commands/sec"
+          },
+          {
+            "expr": "redis_memory_used_bytes / 1024 / 1024",
+            "legendFormat": "Memory Usage (MB)"
+          },
+          {
+            "expr": "cache_hits_total / (cache_hits_total + cache_misses_total) * 100",
+            "legendFormat": "Hit Rate %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Cache Metrics",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 28}
+      },
+      {
+        "id": 10,
+        "title": "Threat Detection Distribution",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "sum by (risk_level) (rate(security_scans_total[1h]))",
+            "legendFormat": "{{risk_level}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "displayMode": "table",
+              "pieType": "pie"
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 8, "x": 0, "y": 36}
+      },
+      {
+        "id": 11,
+        "title": "Top Threat Types",
+        "type": "bargauge",
+        "targets": [
+          {
+            "expr": "topk(10, sum by (threat_type) (rate(threats_detected_total[1h])))",
+            "legendFormat": "{{threat_type}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "displayMode": "gradient",
+              "orientation": "horizontal"
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 8, "x": 8, "y": 36}
+      },
+      {
+        "id": 12,
+        "title": "Active Alerts",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "ALERTS{alertstate=\"firing\"}",
+            "legendFormat": "{{alertname}} - {{severity}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "custom": {
+              "align": "auto",
+              "displayMode": "color-background"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 2}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 8, "x": 16, "y": 36}
+      },
+      {
+        "id": 13,
+        "title": "Pod Scaling & Health",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "kube_deployment_status_replicas{deployment=\"security-guard-ai\"}",
+            "legendFormat": "Desired Replicas"
+          },
+          {
+            "expr": "kube_deployment_status_replicas_available{deployment=\"security-guard-ai\"}",
+            "legendFormat": "Available Replicas"
+          },
+          {
+            "expr": "kube_pod_status_ready{pod=~\"security-guard-ai-.*\"}",
+            "legendFormat": "Ready Pods"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Count",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 44}
+      },
+      {
+        "id": 14,
+        "title": "Network Traffic",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(container_network_receive_bytes_total{pod=~\"security-guard-ai-.*\"}[5m])",
+            "legendFormat": "Inbound (bytes/sec)"
+          },
+          {
+            "expr": "rate(container_network_transmit_bytes_total{pod=~\"security-guard-ai-.*\"}[5m])",
+            "legendFormat": "Outbound (bytes/sec)"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "axisLabel": "Bytes/sec",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 2
+            },
+            "unit": "binBps"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 44}
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h"],
+      "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    },
+    "refresh": "10s",
+    "schemaVersion": 30,
+    "version": 2,
+    "links": [
+      {
+        "title": "Prometheus",
+        "url": "/prometheus",
+        "type": "link"
+      },
+      {
+        "title": "AlertManager",
+        "url": "/alertmanager",
+        "type": "link"
+      }
+    ]
+  }
+}

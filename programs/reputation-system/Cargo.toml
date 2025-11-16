@@ -1,0 +1,23 @@
+[package]
+name = "reputation-system"
+version = "0.1.0"
+description = "AgentMarket - Reputation System Smart Contract"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "reputation_system"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+idl-build = ["anchor-lang/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+default = []
+
+[dependencies]
+anchor-lang = "0.32.1"

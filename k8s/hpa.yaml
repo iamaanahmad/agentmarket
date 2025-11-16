@@ -1,0 +1,139 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: security-guard-ai-hpa
+  labels:
+    app: security-guard-ai
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: security-guard-ai
+  minReplicas: 3
+  maxReplicas: 50
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Pods
+    pods:
+      metric:
+        name: http_requests_per_second
+      target:
+        type: AverageValue
+        averageValue: "100"
+  - type: Object
+    object:
+      metric:
+        name: response_time_p95
+      target:
+        type: Value
+        value: "2000m"  # 2 seconds in milliseconds
+      describedObject:
+        apiVersion: v1
+        kind: Service
+        name: security-guard-ai-service
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 5
+        periodSeconds: 15
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+      - type: Pods
+        value: 2
+        periodSeconds: 60
+      selectPolicy: Min
+---
+apiVersion: v1
+kind: ServiceMonitor
+metadata:
+  name: security-guard-ai-metrics
+  labels:
+    app: security-guard-ai
+spec:
+  selector:
+    matchLabels:
+      app: security-guard-ai
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 15s
+    scrapeTimeout: 10s
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: security-guard-ai-pdb
+  labels:
+    app: security-guard-ai
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: security-guard-ai
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: security-guard-ai-network-policy
+  labels:
+    app: security-guard-ai
+spec:
+  podSelector:
+    matchLabels:
+      app: security-guard-ai
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    - podSelector:
+        matchLabels:
+          app: prometheus
+    ports:
+    - protocol: TCP
+      port: 8000
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: postgres
+    ports:
+    - protocol: TCP
+      port: 5432
+  - to:
+    - podSelector:
+        matchLabels:
+          app: redis
+    ports:
+    - protocol: TCP
+      port: 6379
+  - to: []  # Allow external API calls (Claude, Solana RPC)
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80

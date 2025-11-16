@@ -1,0 +1,243 @@
+{
+  "deployment": {
+    "environment": "production",
+    "version": "1.0.0",
+    "build_date": "2024-12-19",
+    "image_registry": "ghcr.io/agentmarket",
+    "namespace": "production"
+  },
+  "infrastructure": {
+    "kubernetes": {
+      "cluster_name": "security-guard-ai-prod",
+      "region": "us-east-1",
+      "node_groups": {
+        "application": {
+          "instance_type": "m5.xlarge",
+          "min_size": 3,
+          "max_size": 50,
+          "desired_capacity": 5
+        },
+        "database": {
+          "instance_type": "r5.large", 
+          "min_size": 2,
+          "max_size": 5,
+          "desired_capacity": 2
+        }
+      }
+    },
+    "load_balancer": {
+      "type": "application",
+      "scheme": "internet-facing",
+      "health_check": {
+        "path": "/health",
+        "interval": 30,
+        "timeout": 5,
+        "healthy_threshold": 2,
+        "unhealthy_threshold": 3
+      }
+    },
+    "auto_scaling": {
+      "target_cpu_utilization": 70,
+      "target_memory_utilization": 80,
+      "scale_up_cooldown": 60,
+      "scale_down_cooldown": 300,
+      "min_replicas": 3,
+      "max_replicas": 50
+    }
+  },
+  "monitoring": {
+    "prometheus": {
+      "retention": "30d",
+      "scrape_interval": "15s",
+      "evaluation_interval": "15s"
+    },
+    "grafana": {
+      "admin_password": "${GRAFANA_ADMIN_PASSWORD}",
+      "dashboards": [
+        "security-guard-dashboard.json",
+        "infrastructure-dashboard.json",
+        "business-metrics-dashboard.json"
+      ]
+    },
+    "alerting": {
+      "slack_webhook": "${SLACK_WEBHOOK_URL}",
+      "pagerduty_key": "${PAGERDUTY_KEY}",
+      "email_smtp": "${SMTP_SERVER}",
+      "alert_rules": {
+        "high_error_rate": {
+          "threshold": 0.05,
+          "duration": "2m",
+          "severity": "critical"
+        },
+        "high_response_time": {
+          "threshold": "2s",
+          "duration": "3m", 
+          "severity": "warning"
+        },
+        "low_scan_volume": {
+          "threshold": 10,
+          "duration": "30m",
+          "severity": "warning"
+        }
+      }
+    }
+  },
+  "backup": {
+    "schedule": {
+      "database": "0 2 * * *",
+      "logs": "0 3 * * 0",
+      "config": "0 1 * * *"
+    },
+    "retention": {
+      "database": "30d",
+      "logs": "7d", 
+      "config": "90d"
+    },
+    "storage": {
+      "provider": "s3",
+      "bucket": "securityguard-backups-prod",
+      "region": "us-east-1",
+      "encryption": true
+    }
+  },
+  "disaster_recovery": {
+    "rto": "15m",
+    "rpo": "1h",
+    "backup_regions": ["us-west-2"],
+    "automated_failover": true,
+    "recovery_plans": {
+      "database_failure": {
+        "max_downtime": "15m",
+        "steps": [
+          "assess_damage",
+          "stop_traffic",
+          "restore_from_backup",
+          "verify_integrity",
+          "resume_traffic"
+        ]
+      },
+      "application_failure": {
+        "max_downtime": "5m",
+        "steps": [
+          "restart_pods",
+          "verify_health",
+          "resume_traffic"
+        ]
+      },
+      "complete_failure": {
+        "max_downtime": "30m",
+        "steps": [
+          "deploy_infrastructure",
+          "restore_database",
+          "deploy_application",
+          "verify_system",
+          "resume_traffic"
+        ]
+      }
+    }
+  },
+  "security": {
+    "network_policies": true,
+    "pod_security_standards": "restricted",
+    "rbac_enabled": true,
+    "secrets_encryption": true,
+    "image_scanning": true,
+    "vulnerability_scanning": true,
+    "compliance": {
+      "frameworks": ["SOC2", "ISO27001"],
+      "audit_logging": true,
+      "data_retention": "7y"
+    }
+  },
+  "performance": {
+    "targets": {
+      "response_time_p95": "2s",
+      "response_time_p99": "5s",
+      "availability": "99.9%",
+      "throughput": "1000rps",
+      "ml_accuracy": "99.8%",
+      "pattern_matching_time": "100ms"
+    },
+    "optimization": {
+      "caching": {
+        "redis_cluster": true,
+        "cache_ttl": {
+          "pattern_matches": "1h",
+          "ml_predictions": "5m",
+          "user_sessions": "30m"
+        }
+      },
+      "database": {
+        "connection_pooling": true,
+        "read_replicas": 2,
+        "query_optimization": true,
+        "indexing_strategy": "comprehensive"
+      }
+    }
+  },
+  "business_metrics": {
+    "kpis": {
+      "total_scans": {
+        "target": 10000,
+        "alert_threshold": 1000
+      },
+      "revenue": {
+        "target": "100 SOL",
+        "alert_threshold": "10 SOL"
+      },
+      "active_users": {
+        "target": 1000,
+        "alert_threshold": 100
+      },
+      "threat_detection_rate": {
+        "target": "5%",
+        "alert_threshold": "1%"
+      }
+    },
+    "tracking": {
+      "scan_volume": true,
+      "revenue_tracking": true,
+      "user_engagement": true,
+      "threat_intelligence": true,
+      "model_performance": true
+    }
+  },
+  "compliance": {
+    "data_protection": {
+      "gdpr_compliance": true,
+      "ccpa_compliance": true,
+      "data_anonymization": true,
+      "right_to_deletion": true
+    },
+    "security_standards": {
+      "encryption_at_rest": true,
+      "encryption_in_transit": true,
+      "access_logging": true,
+      "vulnerability_management": true
+    },
+    "audit_requirements": {
+      "log_retention": "7y",
+      "audit_trails": true,
+      "compliance_reporting": true,
+      "third_party_audits": true
+    }
+  },
+  "cost_optimization": {
+    "resource_limits": {
+      "cpu_requests": "500m",
+      "cpu_limits": "2000m",
+      "memory_requests": "1Gi",
+      "memory_limits": "4Gi"
+    },
+    "scaling_policies": {
+      "predictive_scaling": true,
+      "spot_instances": false,
+      "reserved_instances": true
+    },
+    "monitoring": {
+      "cost_alerts": true,
+      "resource_utilization": true,
+      "rightsizing_recommendations": true
+    }
+  }
+}

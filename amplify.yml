@@ -1,0 +1,33 @@
+version: 1
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Installing dependencies..."
+        - npm ci
+        - echo "Checking Node.js and npm versions..."
+        - node --version
+        - npm --version
+    build:
+      commands:
+        - echo "Building Next.js application..."
+        - npm run build
+        - echo "Build completed successfully"
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
+
+env:
+  variables:
+    NEXT_PUBLIC_SOLANA_NETWORK: devnet
+    NEXT_PUBLIC_SOLANA_RPC_ENDPOINT: https://api.devnet.solana.com
+    NEXT_PUBLIC_AGENT_REGISTRY_PROGRAM_ID: 8RDfVnQJiW7Nn9qbWubNUVJh6B7fmgxCY86TqjSHjTuu
+    NEXT_PUBLIC_MARKETPLACE_ESCROW_PROGRAM_ID: 8HQ4FBCBjf5jqCW6DNYjpAK4BGujAHD9MWH8bitVK2EV
+    NEXT_PUBLIC_REPUTATION_SYSTEM_PROGRAM_ID: EXvxVW73eF359VWGeCM3hV431uaFyXvKbHzKqgjYJCVY
+    NEXT_PUBLIC_ROYALTY_SPLITTER_PROGRAM_ID: 5VRG5k7ad2DgyMFYfZ7QCN3AJPtuoH7WiJukc8ueddHL
