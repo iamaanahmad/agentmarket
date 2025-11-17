@@ -22,7 +22,6 @@ const navigation = [
   { name: 'Marketplace', href: '/marketplace', icon: Store },
   { name: 'Security', href: '/security', icon: Shield },
   { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { name: 'Chat', href: '/chat', icon: MessageSquare },
 ]
 
 export function Navbar() {

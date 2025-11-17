@@ -74,7 +74,7 @@ export function CTA() {
             viewport={{ once: true }}
             className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button asChild size="lg" className="gradient-bg text-white hover:opacity-90 px-8 py-4 text-lg">
+            <Button asChild size="lg" className="gradient-bg text-primary-foreground hover:opacity-90 px-8 py-4 text-lg">
               <Link href="/marketplace">
                 Explore Marketplace
                 <ArrowRight className="ml-2 h-6 w-6" />

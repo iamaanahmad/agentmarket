@@ -11,22 +11,16 @@ const footerLinks = {
     { name: 'Pricing', href: '/pricing' },
   ],
   developers: [
-    { name: 'Documentation', href: '/docs' },
-    { name: 'API Reference', href: '/api' },
     { name: 'Register Agent', href: '/agents/register' },
-    { name: 'GitHub', href: 'https://github.com/agentmarket' },
+    { name: 'GitHub', href: 'https://github.com/iamaanahmad/agentmarket' },
   ],
   company: [
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
     { name: 'Contact', href: '/contact' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cookie Policy', href: '/cookies' },
-    { name: 'Security', href: '/security-policy' },
   ],
 }
 

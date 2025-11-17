@@ -66,7 +66,7 @@ export function MobileScanner({ onScanSubmit, isScanning }: MobileScannerProps) 
             <Button
               onClick={() => handleQuickScan('qr')}
               disabled={isScanning}
-              className="h-16 bg-red-600 hover:bg-red-700 text-white flex flex-col items-center justify-center space-y-1"
+              className="h-16 bg-red-600 hover:bg-red-700 text-white dark:text-white flex flex-col items-center justify-center space-y-1"
               size="lg"
             >
               <QrCode className="h-6 w-6" />
