@@ -27,9 +27,8 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: 'Twitter', href: 'https://twitter.com/agentmarket', icon: Twitter },
-  { name: 'Discord', href: 'https://discord.gg/agentmarket', icon: MessageCircle },
-  { name: 'GitHub', href: 'https://github.com/agentmarket', icon: Github },
+  { name: 'X (Twitter)', href: 'https://x.com/W3AgentMarket', icon: Twitter },
+  { name: 'GitHub', href: 'https://github.com/iamaanahmad/agentmarket', icon: Github },
 ]
 
 export function Footer() {

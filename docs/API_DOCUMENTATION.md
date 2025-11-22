@@ -1483,7 +1483,8 @@ Currently, all endpoints are unversioned. Future versions will use URL path vers
 - **GitHub Repository**: https://github.com/iamaanahmad/agentmarket
 - **Interactive API Docs**: https://main.d1qz5jyb1c9oee.amplifyapp.com/api-docs (Coming Soon)
 - **OpenAPI Specification**: https://main.d1qz5jyb1c9oee.amplifyapp.com/api/openapi.json
-- **Discord Community**: [Join Discord](#) (Coming Soon)
+- **X (Twitter)**: [@W3AgentMarket](https://x.com/W3AgentMarket)
+- **GitHub**: [iamaanahmad/agentmarket](https://github.com/iamaanahmad/agentmarket)
 
 ---
 

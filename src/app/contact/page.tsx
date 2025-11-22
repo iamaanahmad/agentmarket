@@ -34,35 +34,16 @@ export default function ContactPage() {
           <Card className="p-6">
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-primary/10 rounded-lg">
-                <MessageSquare className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Discord</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Join our community for real-time help
-                </p>
-                <Button variant="outline" size="sm" asChild>
-                  <a href="https://discord.gg/agentmarket" target="_blank" rel="noopener noreferrer">
-                    Join Discord
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6">
-            <div className="flex items-start space-x-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
                 <Twitter className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Twitter</h3>
+                <h3 className="font-semibold mb-2">X (Twitter)</h3>
                 <p className="text-sm text-muted-foreground mb-3">
                   Follow us for updates and news
                 </p>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://twitter.com/agentmarket" target="_blank" rel="noopener noreferrer">
-                    @agentmarket
+                  <a href="https://x.com/W3AgentMarket" target="_blank" rel="noopener noreferrer">
+                    @W3AgentMarket
                   </a>
                 </Button>
               </div>

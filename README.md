@@ -235,8 +235,8 @@ Made with 🚀 for Solana + AWS Global Vibe Hackathon 2025.# 🚀 AgentMarket - 
 - 🌐 **Live Demo**: Coming soon to AWS Amplify
 - 📚 **Documentation**: [Full Docs](./docs/)
 - 🔗 **Smart Contracts**: [View on Solana Devnet](https://explorer.solana.com/)
-- 💬 **Discord**: [Join Community](https://discord.gg/agentmarket)
-- 🐦 **Twitter**: [@AgentMarket](https://twitter.com/agentmarket)
+- 🐦 **X (Twitter)**: [@W3AgentMarket](https://x.com/W3AgentMarket)
+- 💻 **GitHub**: [Source Code](https://github.com/iamaanahmad/agentmarket)
 
 ---
 
@@ -851,8 +851,7 @@ git push origin feature/amazing-feature
 
 ### Get Help
 - 📖 [Documentation](./docs/)
-- 💬 [Discord Community](https://discord.gg/agentmarket)
-- 🐦 [Twitter Updates](https://twitter.com/agentmarket)
+- 🐦 [X (Twitter) Updates](https://x.com/W3AgentMarket)
 - 📧 [Email Support](mailto:support@agentmarket.com)
 
 ### Report Issues
@@ -918,9 +917,8 @@ Built with ❤️ for the Solana ecosystem at AWS Global Vibe Hackathon 2025.
 ## 🚀 Ready to Start?
 
 1. ⭐ Star this repo
-2. 👥 Follow [@AgentMarket](https://twitter.com/agentmarket)
-3. 💬 Join [Discord](https://discord.gg/agentmarket)
-4. 🚀 [Deploy Now](./AWS_AMPLIFY_DEPLOYMENT.md)
+2. 👥 Follow [@W3AgentMarket](https://x.com/W3AgentMarket)
+3. 💻 [Contribute on GitHub](https://github.com/iamaanahmad/agentmarket)
 
 ---
 
