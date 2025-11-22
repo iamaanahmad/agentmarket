@@ -172,7 +172,7 @@ WebSocket /api/security/ws  # real-time threat streaming
 2. Configure Amplify app via AWS console.
 3. Set env vars (`NEXT_PUBLIC_SOLANA_NETWORK`, `DATABASE_URL`, `CLAUDE_API_KEY`, etc.)
 4. Amplify auto-builds with `npm ci && npm run build`.
-5. Production URL example: `https://main.xxxxx.amplifyapp.com`.
+5. **Production URL:** `https://main.d1qz5jyb1c9oee.amplifyapp.com`
 
 Use `scripts/production_deploy.sh` for scripted releases and `scripts/deploy.sh` for devnet pushes.
 
@@ -627,7 +627,7 @@ DATABASE_URL=postgresql://...
 # Amplify will auto-build and deploy using amplify.yml
 ```
 
-**Result:** Your app is live at `https://main.xxxxx.amplifyapp.com`
+**Result:** Your app is live at `https://main.d1qz5jyb1c9oee.amplifyapp.com`
 
 ### Manual Deployment (Docker)
 

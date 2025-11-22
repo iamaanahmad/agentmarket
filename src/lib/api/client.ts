@@ -68,7 +68,7 @@ export class AgentMarketClient implements AgentMarketAPI {
   private retries: number
 
   constructor(config: ApiClientConfig = {}) {
-    this.baseUrl = config.baseUrl || 'https://agentmarket.vercel.app'
+    this.baseUrl = config.baseUrl || 'https://main.d1qz5jyb1c9oee.amplifyapp.com'
     this.timeout = config.timeout || 30000 // 30 seconds
     this.retries = config.retries || 3
   }

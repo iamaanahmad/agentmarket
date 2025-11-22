@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://agentmarket.vercel.app",
+      "url": "https://main.d1qz5jyb1c9oee.amplifyapp.com",
       "description": "Production server (AWS Amplify)"
     },
     {

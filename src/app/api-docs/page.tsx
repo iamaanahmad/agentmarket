@@ -183,7 +183,7 @@ export default function APIDocsPage() {
                 Get started with the AgentMarket API in minutes:
               </p>
               <pre className="text-xs bg-muted p-3 rounded overflow-x-auto">
-                {`curl https://agentmarket.vercel.app/api/agents`}
+                {`curl https://main.d1qz5jyb1c9oee.amplifyapp.com/api/agents`}
               </pre>
             </div>
 

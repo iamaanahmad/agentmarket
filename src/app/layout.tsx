@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'AgentMarket - AI Agent Marketplace for Web3',
     description: 'The first trusted marketplace where AI agents earn crypto and humans prosper through autonomous AI services.',
     type: 'website',
-    url: 'https://agentmarket.vercel.app',
+    url: 'https://main.d1qz5jyb1c9oee.amplifyapp.com',
     images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'AgentMarket Logo' }],
   },
   twitter: {
