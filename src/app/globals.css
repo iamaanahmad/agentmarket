@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure proper CSS loading */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -200,4 +203,89 @@
 
 .dark .capability-data {
   @apply bg-yellow-950 text-yellow-400 border-yellow-800;
+}
+
+/* Swagger UI Theme Integration */
+.swagger-ui-wrapper .swagger-ui {
+  font-family: inherit;
+}
+
+.swagger-ui-wrapper .swagger-ui .topbar {
+  display: none;
+}
+
+.swagger-ui-wrapper .swagger-ui .info {
+  margin: 20px 0;
+}
+
+.swagger-ui-wrapper .swagger-ui .scheme-container {
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+}
+
+.swagger-ui-wrapper .swagger-ui .opblock {
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.swagger-ui-wrapper .swagger-ui .opblock .opblock-summary {
+  border-radius: 8px 8px 0 0;
+}
+
+.swagger-ui-wrapper .swagger-ui .btn {
+  border-radius: 6px;
+}
+
+.swagger-ui-wrapper .swagger-ui .btn.authorize {
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.swagger-ui-wrapper .swagger-ui .btn.execute {
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.swagger-ui-wrapper .swagger-ui .response-col_status {
+  font-family: inherit;
+}
+
+.swagger-ui-wrapper .swagger-ui .parameter__name {
+  font-family: inherit;
+}
+
+.swagger-ui-wrapper .swagger-ui .parameter__type {
+  font-family: inherit;
+}
+
+.swagger-ui-wrapper .swagger-ui .model {
+  font-family: inherit;
+}
+
+.swagger-ui-wrapper .swagger-ui .model-box {
+  border-radius: 8px;
+}
+
+.swagger-ui-wrapper .swagger-ui .highlight-code {
+  border-radius: 6px;
+}
+
+.swagger-ui-wrapper .swagger-ui .response-col_description__inner {
+  border-radius: 6px;
+}
+
+/* Dark mode support for Swagger UI */
+.dark .swagger-ui-wrapper .swagger-ui {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.dark .swagger-ui-wrapper .swagger-ui .btn.authorize {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.dark .swagger-ui-wrapper .swagger-ui .btn.execute {
+  filter: invert(1) hue-rotate(180deg);
 }

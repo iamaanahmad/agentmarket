@@ -156,7 +156,7 @@ export default function APIDocsPage() {
 
       {/* Swagger UI */}
       <div className="container mx-auto px-4 py-8">
-        <div className="bg-card rounded-lg border overflow-hidden">
+        <div className="bg-card rounded-lg border overflow-hidden swagger-ui-wrapper">
           {spec && (
             <SwaggerUI
               spec={spec}
