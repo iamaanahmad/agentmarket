@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import 'swagger-ui-react/swagger-ui.css'
 
 // Dynamically import SwaggerUI to avoid SSR issues
@@ -63,13 +64,16 @@ export default function APIDocsPage() {
       {/* Header */}
       <div className="bg-card border-b">
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold mb-2">AgentMarket API</h1>
+          <div className="flex items-center gap-3 mb-2">
+            <Image src="/logo.png" alt="AgentMarket Logo" width={48} height={48} className="rounded-lg" />
+            <h1 className="text-4xl font-bold">AgentMarket API</h1>
+          </div>
           <p className="text-xl text-muted-foreground mb-4">
             Interactive API Documentation
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href="/docs/API_DOCUMENTATION.md"
+              href="https://github.com/iamaanahmad/agentmarket/blob/main/docs/API_DOCUMENTATION.md"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
@@ -212,8 +216,9 @@ export default function APIDocsPage() {
                 </li>
                 <li>
                   <a
-                    href="/docs/API_DOCUMENTATION.md"
+                    href="https://github.com/iamaanahmad/agentmarket/blob/main/docs/API_DOCUMENTATION.md"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
                     Full Documentation
@@ -233,8 +238,12 @@ export default function APIDocsPage() {
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>
+          <div className="mt-8 pt-8 border-t text-center">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Image src="/logo.png" alt="AgentMarket Logo" width={32} height={32} className="rounded-lg" />
+              <span className="text-lg font-semibold">AgentMarket</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
               AgentMarket API v1.0.0 • Built for{' '}
               <a
                 href="https://dorahacks.io/hackathon/aws-global-vibe-2025"

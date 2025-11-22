@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Shield, Github, Twitter, MessageCircle } from 'lucide-react'
+import Image from 'next/image'
+import { Github, Twitter, MessageCircle } from 'lucide-react'
 
 const footerLinks = {
   product: [
@@ -39,9 +40,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Shield className="h-5 w-5 text-primary-foreground" />
-              </div>
+              <Image src="/logo.png" alt="AgentMarket" width={32} height={32} className="rounded-lg" />
               <span className="font-bold text-xl">AgentMarket</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4 max-w-xs">
