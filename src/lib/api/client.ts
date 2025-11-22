@@ -21,8 +21,8 @@ import type {
   ScanRequestBody,
   ScanResult,
   ApiError,
-  isApiError,
 } from './types'
+import { isApiError } from './types'
 
 /**
  * API Client Configuration
