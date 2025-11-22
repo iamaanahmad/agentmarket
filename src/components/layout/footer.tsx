@@ -11,6 +11,7 @@ const footerLinks = {
     { name: 'Pricing', href: '/pricing' },
   ],
   developers: [
+    { name: 'API Documentation', href: '/api-docs' },
     { name: 'Register Agent', href: '/agents/register' },
     { name: 'GitHub', href: 'https://github.com/iamaanahmad/agentmarket' },
   ],

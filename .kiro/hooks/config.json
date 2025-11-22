@@ -1,0 +1,116 @@
+{
+  "hooks": [
+    {
+      "id": "format-on-save",
+      "name": "Format Code on Save",
+      "description": "Automatically format TypeScript/React files using Prettier",
+      "trigger": "onSave",
+      "filePattern": "**/*.{ts,tsx,js,jsx}",
+      "enabled": true,
+      "command": "npx prettier --write ${file}",
+      "showNotification": false
+    },
+    {
+      "id": "lint-on-save",
+      "name": "Lint on Save",
+      "description": "Run ESLint on TypeScript/React files",
+      "trigger": "onSave",
+      "filePattern": "src/**/*.{ts,tsx}",
+      "enabled": true,
+      "command": "npx eslint ${file} --fix",
+      "showNotification": false
+    },
+    {
+      "id": "type-check",
+      "name": "TypeScript Type Check",
+      "description": "Run TypeScript compiler to check for type errors",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "npm run type-check",
+      "showNotification": true
+    },
+    {
+      "id": "test-on-save",
+      "name": "Run Tests on Save",
+      "description": "Run tests related to saved file",
+      "trigger": "onSave",
+      "filePattern": "**/*.test.{ts,tsx}",
+      "enabled": false,
+      "command": "npm test -- ${file}",
+      "showNotification": true
+    },
+    {
+      "id": "build-contracts",
+      "name": "Build Smart Contracts",
+      "description": "Build Anchor smart contracts",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "cd programs && anchor build",
+      "showNotification": true
+    },
+    {
+      "id": "test-contracts",
+      "name": "Test Smart Contracts",
+      "description": "Run Anchor test suite",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "anchor test",
+      "showNotification": true
+    },
+    {
+      "id": "deploy-devnet",
+      "name": "Deploy to Devnet",
+      "description": "Deploy smart contracts to Solana devnet",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "anchor deploy --provider.cluster devnet",
+      "showNotification": true,
+      "confirmBefore": true
+    },
+    {
+      "id": "security-scan",
+      "name": "Security Scan",
+      "description": "Run security checks on code changes",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "npm run security-check",
+      "showNotification": true
+    },
+    {
+      "id": "update-api-docs",
+      "name": "Update API Documentation",
+      "description": "Generate API docs from code comments",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "npm run docs:generate",
+      "showNotification": true
+    },
+    {
+      "id": "bundle-analysis",
+      "name": "Analyze Bundle Size",
+      "description": "Check bundle size and performance",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "npm run analyze",
+      "showNotification": true
+    },
+    {
+      "id": "accessibility-audit",
+      "name": "Accessibility Audit",
+      "description": "Check for accessibility issues in components",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "npm run a11y-check",
+      "showNotification": true
+    },
+    {
+      "id": "update-specs",
+      "name": "Update Spec Progress",
+      "description": "Update task completion status in specs",
+      "trigger": "manual",
+      "enabled": true,
+      "command": "node .kiro/hooks/scripts/update-specs.js",
+      "showNotification": true
+    }
+  ]
+}

@@ -1,164 +1,188 @@
-# AgentMarket - Project Context & Guidelines
+# AgentMarket - Project Context
 
 ## Project Overview
-AgentMarket is a decentralized AI agent marketplace built for the AWS Global Vibe: AI Coding Hackathon 2025. We're competing for the $700,000+ prize pool in the Web3 AI Integration track.
 
-**Mission:** Create the first trusted marketplace where AI agents earn crypto and humans prosper through autonomous AI services.
+**Name:** AgentMarket  
+**Tagline:** "The First Decentralized Marketplace Where AI Agents Earn, Humans Prosper, and Innovation is Rewarded"
 
-**Core Innovation:** Dual value proposition - both a marketplace platform AND SecurityGuard AI as the killer app that proves utility from day one.
+**One-Line Description:** A Web3-powered marketplace platform where autonomous AI agents offer services for crypto micropayments, with SecurityGuard AI as the flagship agent protecting users from blockchain exploits.
 
-## Hackathon Requirements Compliance
+## Hackathon Context
 
-### Mandatory Requirements ✅
-- **AI Integration:** Claude Sonnet 4 + custom ML models for transaction analysis
-- **Blockchain:** Solana smart contracts (Rust/Anchor) for agent registry, escrow, reputation
-- **Web3 Wallets:** Phantom, Solflare, Backpack integration
-- **Real-world Utility:** Solves $2B wallet exploit problem + creates AI agent economy
-- **Kiro IDE Usage:** Complete spec-driven development with .kiro folder structure
-- **Working Demo:** Live deployment with video demonstration
+**Event:** AWS Global Vibe: AI Coding Hackathon 2025  
+**Organizer:** DoraHacks + Amazon Web Services  
+**Prize Pool:** $700,000+ USD  
+**Track:** Web3 AI Integration  
+**Submission Deadline:** December 1, 2025, 11:59 PM PST  
+**Development Tool:** Kiro IDE (mandatory requirement)
 
-### Judging Criteria Focus
-1. **Technical Implementation (25%)** - Full-stack complexity with advanced AI/ML
-2. **Potential Value (20%)** - Addresses massive market opportunities
-3. **Kiro IDE Implementation (20%)** - Showcase spec-driven development
-4. **Quality of Idea (15%)** - Category-creating innovation
-5. **Design & UX (10%)** - Consumer-grade polish
-6. **Impact & Sustainability (20%)** - Clear business model and ecosystem benefit
+## Problem Statement
 
-## Target Users
+### Problem 1: No Trusted AI Agent Marketplace
+- AI agent economy is exploding ($637M raised in 2025)
+- Creators have no easy way to monetize AI models/agents
+- Users have no trusted platform to discover and hire AI services
+- Current platforms charge 20-30% fees with payment delays
 
-### Primary: Web3 Users Seeking Security
-- **Pain:** $2B lost to wallet exploits in 2024
-- **Solution:** SecurityGuard AI provides real-time transaction protection
-- **Value:** Peace of mind for 0.01 SOL per scan (~$2)
+### Problem 2: Web3 Security Crisis
+- $2 billion lost to wallet exploits in 2024
+- Users lack real-time protection before signing transactions
+- Complex security tools intimidate newcomers
+- No AI-powered transaction analysis available
 
-### Secondary: AI Agent Creators
-- **Pain:** No easy way to monetize AI models/agents
-- **Solution:** Register agents as NFTs, earn royalties forever
-- **Value:** New income stream with 85% revenue share
+### Problem 3: Web3 Accessibility Barrier
+- 65% of new Web3 users abandon within first month
+- Technical complexity prevents mass adoption
+- No natural language interface for blockchain operations
 
-### Tertiary: Non-Technical Users
-- **Pain:** Web3 complexity prevents adoption
-- **Solution:** Natural language interface for blockchain operations
-- **Value:** Accessible Web3 participation without technical knowledge
+## Solution Architecture
 
-## Competitive Advantages
+### Core Platform: AgentMarket
+A decentralized marketplace where:
+- Creators register AI agents as on-chain NFTs
+- Users discover and hire agents with crypto micropayments
+- Smart contracts enforce fair payment and royalty splits (85% creator, 10% platform, 5% treasury)
+- Reputation system ensures quality and trust
+- Anyone can participate without intermediaries
 
-### Technical Moats
-- **First-mover:** No decentralized AI agent marketplace exists on Solana
-- **AI Integration:** Advanced ML models + natural language processing
-- **Economic Model:** NFT-based agent ownership with perpetual royalties
-- **Security Focus:** Real-time exploit detection with 99%+ accuracy
+### Launch Agent: SecurityGuard AI
+A flagship AI agent that:
+- Scans transactions before signing (real-time protection)
+- Detects wallet drainers, rug pulls, malicious contracts
+- Explains risks in natural language
+- Charges 0.01 SOL per scan (~$2)
+- Proves marketplace utility from day one
 
-### Business Moats
-- **Network Effects:** Value grows with each agent and user
-- **Creator Lock-in:** Agents earn more as platform grows
-- **Data Advantage:** Exploit database improves with usage
-- **Brand Trust:** Security-first positioning builds user confidence
+## Technology Stack
 
-## Development Philosophy
+### Frontend
+- Framework: Next.js 14 (App Router with TypeScript)
+- Styling: TailwindCSS + shadcn/ui components
+- State Management: React Query + Zustand
+- Web3: @solana/wallet-adapter-react, @solana/web3.js
+- Wallets: Phantom, Solflare, Backpack
 
-### Spec-Driven Development
-- Requirements → Design → Tasks → Implementation
-- Every feature has clear acceptance criteria
-- AWS Q Developer generates code from specifications
-- Continuous documentation and evidence collection
+### Smart Contracts (Solana)
+- Framework: Anchor 0.30+
+- Language: Rust
+- Programs:
+  - agent_registry: Agent registration, metadata storage
+  - marketplace_escrow: Payment holding and release
+  - reputation_system: On-chain ratings and reviews
+  - royalty_splitter: Automated payment distribution
 
-### Quality Standards
-- **Performance:** <2s SecurityGuard analysis, <500ms search
-- **Security:** Smart contract audits, input validation, secure APIs
-- **UX:** Consumer-grade polish, mobile-first design
-- **Accessibility:** WCAG compliance, keyboard navigation
+### AI Layer
+- Primary AI: Claude Sonnet 4 (via Anthropic API)
+- Security Analysis: Custom ML model trained on exploit patterns
+- NLP Interface: Fine-tuned model for Web3 terminology
+- Orchestration: LangChain for agent workflow management
+- Vector DB: Pinecone for semantic search of agents
 
-### Technology Choices Rationale
-- **Solana:** Fast, cheap transactions perfect for micropayments
-- **Next.js 14:** Modern React with App Router for performance
-- **Claude Sonnet 4:** Best-in-class AI for natural language processing
-- **Anchor/Rust:** Secure, efficient smart contract development
-- **AWS:** Reliable infrastructure with hackathon integration
+### Backend Services
+- API Framework: Next.js API Routes + FastAPI (Python for AI)
+- Database: PostgreSQL (AWS RDS) for off-chain data
+- Caching: Redis (AWS ElastiCache)
+- Storage: IPFS for agent code/models, AWS S3 for media
+
+### Infrastructure
+- Development: Kiro IDE with AWS Q Developer integration
+- Frontend Hosting: AWS Amplify
+- Backend Functions: AWS Lambda (serverless)
+- Database: Amazon RDS (PostgreSQL)
+- Monitoring: AWS CloudWatch + Sentry
+- RPC Provider: Helius (Solana)
+
+## Core Features (MVP)
+
+### Phase 1: Core Marketplace
+1. Agent Registration - Creators register AI agents on-chain with NFT ownership
+2. Agent Discovery & Search - Users find agents by capability, price, rating
+3. Service Request & Escrow Payment - Hire agents with crypto, escrow protection
+4. Reputation System - On-chain ratings and reviews
+5. Creator Dashboard - Earnings tracking, performance metrics, withdrawals
+
+### Phase 2: SecurityGuard AI Agent
+6. Transaction Security Scanning - AI-powered transaction analysis (<2 seconds)
+7. Natural Language Security Interface - Ask security questions in plain English
+8. Exploit Pattern Database - 10M+ patterns, 99.8%+ detection accuracy
+
+### Phase 3: Advanced Features (Post-MVP)
+9. Natural Language Agent Hiring - Describe needs in plain English
+10. Multi-Agent Workflows - Chain multiple agents for complex tasks
+
+## Key Performance Targets
+
+### SecurityGuard AI
+- Latency: <2 seconds (95th percentile)
+- Accuracy: 99.8% detection of known exploits
+- False Positives: <0.5%
+- Throughput: 100 scans/second
+- Uptime: 99.9%
+
+### Platform
+- Agent registration: <5 seconds on-chain
+- Search results: <500ms
+- Service completion: <2 minutes (for fast agents)
+- Gas fees: <0.01 SOL per transaction
+- Mobile responsive: All pages
+
+## Business Model
+
+### Revenue Streams
+- Marketplace fee: 10% of all transactions
+- Platform treasury: 5% of all transactions
+- Creator earnings: 85% of all transactions
+
+### Value Proposition
+- For Creators: Monetize AI agents, earn forever via royalties
+- For Users: Access AI services with crypto, no traditional payment friction
+- For Platform: Network effects, sustainable fee model
+
+## Winning Strategy
+
+### Innovation (25 points)
+- First AI agent marketplace on Solana - Category creation
+- Novel economic model - Creators earn forever via royalties
+- Dual value proposition - Platform + Utility agent
+- Future-forward - Positioned for AI agent economy explosion
+
+### Technical Excellence (25 points)
+- Full-stack complexity - Smart contracts + AI + Frontend
+- Perfect Kiro IDE showcase - Complete spec-driven development
+- Advanced AI integration - ML models + Natural language + Real-time analysis
+- Solana native - Leverages speed and low fees
+
+### Real-world Impact (20 points)
+- Solves $2B problem - Prevents wallet exploits
+- Empowers creators - New income stream for AI builders
+- Accessible to all - No technical knowledge required
+- Open source - Benefits entire ecosystem
+
+## Project Timeline
+
+**Week 1 (Nov 4-10):** Foundation - Setup, specs, smart contracts, frontend foundation  
+**Week 2 (Nov 11-17):** Core Marketplace - Registration, discovery, payments, reputation  
+**Week 3 (Nov 18-24):** SecurityGuard AI - Transaction analysis, ML models, UI  
+**Week 4 (Nov 25-Dec 1):** Polish & Demo - Testing, UI/UX, video, documentation, submission
 
 ## Success Metrics
 
-### MVP Success (Week 4)
-- [ ] 10+ registered agents in marketplace
-- [ ] 50+ successful service requests completed
-- [ ] 100+ SecurityGuard scans performed
-- [ ] <2s average SecurityGuard response time
-- [ ] 99%+ exploit detection accuracy
-- [ ] Zero critical bugs in core flows
+### Technical
+- All smart contracts deployed and tested
+- SecurityGuard AI achieving <2s response time
+- 99.8%+ exploit detection accuracy
+- Mobile responsive UI
+- Zero critical bugs
 
-### Demo Success
-- [ ] Compelling 3-4 minute video showcasing innovation
-- [ ] Live demo works flawlessly during presentation
-- [ ] Clear value proposition communicated
-- [ ] Technical complexity demonstrated
-- [ ] Kiro IDE usage evidence provided
+### Hackathon
+- Complete .kiro folder structure (requirements.md, design.md, tasks.md)
+- Documented AWS Q Developer usage
+- Professional demo video (3-5 minutes)
+- Comprehensive documentation
+- Submission before deadline
 
-### Hackathon Success
-- [ ] Top 3 finish in Web3 AI Integration track
-- [ ] Judge recognition for technical innovation
-- [ ] Community interest and engagement
-- [ ] Media coverage and social sharing
-- [ ] Potential investor/partner interest
-
-## Risk Mitigation
-
-### Technical Risks
-- **Smart Contract Bugs:** Comprehensive testing, security audits
-- **AI Model Performance:** Extensive training data, continuous validation
-- **Scalability Issues:** Load testing, performance optimization
-- **Integration Complexity:** Modular architecture, clear interfaces
-
-### Timeline Risks
-- **Scope Creep:** Strict MVP focus, feature prioritization
-- **Dependency Delays:** Parallel development, backup plans
-- **Quality Compromise:** Built-in testing time, quality gates
-
-### Market Risks
-- **User Adoption:** Clear value prop, intuitive UX
-- **Competition:** First-mover advantage, technical moats
-- **Regulatory:** Compliance research, legal review
-
-## Team Coordination
-
-### Communication
-- Daily standups to track progress
-- Slack for real-time coordination
-- GitHub for code collaboration
-- Kiro IDE for spec-driven development
-
-### Responsibilities
-- **Blockchain Dev:** Smart contracts, Solana integration
-- **Frontend Dev:** UI/UX, wallet integration, responsive design
-- **AI/ML Dev:** SecurityGuard AI, natural language processing
-- **Backend Dev:** APIs, database, infrastructure
-- **DevOps:** Deployment, monitoring, performance
-
-### Quality Gates
-- Code reviews for all changes
-- Automated testing in CI/CD
-- Performance benchmarks
-- Security scans
-- User acceptance testing
-
-## Innovation Highlights for Judges
-
-### Technical Innovation
-- **Novel Architecture:** AI agents as tradeable NFTs with smart contract orchestration
-- **Advanced AI:** Real-time transaction analysis with ML anomaly detection
-- **Cross-Domain:** Seamless integration of AI, blockchain, and traditional web tech
-- **Performance:** Sub-2-second AI analysis at scale
-
-### Business Innovation
-- **Economic Model:** Creator royalties via NFT ownership creates sustainable ecosystem
-- **Market Creation:** First decentralized AI agent marketplace
-- **Accessibility:** Natural language interface democratizes Web3
-- **Security Focus:** Proactive protection vs reactive solutions
-
-### Social Impact
-- **Creator Economy:** New income streams for AI developers
-- **User Protection:** Prevents billions in wallet exploits
-- **Web3 Adoption:** Lowers barriers for mainstream users
-- **Open Source:** Benefits entire ecosystem
-
-This project represents the future of AI-powered Web3 applications - where autonomous agents create value, humans are protected, and innovation is rewarded.
+### Impact
+- Solves real Web3 security problem
+- Enables new AI agent economy
+- Open source contribution to ecosystem
+- Clear path to sustainability and growth
