@@ -1,5 +1,5 @@
 """
-High-performance Claude explainer service
+High-performance AI explainer service using Google Gemini
 Optimized for <1 second explanation generation
 """
 
@@ -10,19 +10,19 @@ from typing import Dict, Any, Optional, List
 
 import redis.asyncio as redis
 from loguru import logger
-import anthropic
+import google.generativeai as genai
 
 from core.config import get_settings
 from models.schemas import SecurityChatMessage
 
 
 class ClaudeExplainer:
-    """High-performance Claude explainer with caching and fallbacks"""
+    """High-performance AI explainer with caching and fallbacks using Google Gemini"""
     
     def __init__(self):
         self.settings = get_settings()
         self.redis_client: Optional[redis.Redis] = None
-        self.anthropic_client: Optional[anthropic.AsyncAnthropic] = None
+        self.gemini_model: Optional[genai.GenerativeModel] = None
         
         # Performance tracking
         self.explanation_times = []
@@ -114,18 +114,17 @@ Be specific and actionable."""
             logger.warning(f"⚠️ Redis connection failed: {e}")
             self.redis_client = None
         
-        # Initialize Anthropic client
-        if self.settings.anthropic_api_key:
+        # Initialize Google Gemini
+        if self.settings.gemini_api_key:
             try:
-                self.anthropic_client = anthropic.AsyncAnthropic(
-                    api_key=self.settings.anthropic_api_key
-                )
-                logger.info("✅ Anthropic client initialized")
+                genai.configure(api_key=self.settings.gemini_api_key)
+                self.gemini_model = genai.GenerativeModel('gemini-1.5-flash')
+                logger.info("✅ Google Gemini initialized")
             except Exception as e:
-                logger.warning(f"⚠️ Anthropic client initialization failed: {e}")
-                self.anthropic_client = None
+                logger.warning(f"⚠️ Gemini initialization failed: {e}")
+                self.gemini_model = None
         else:
-            logger.warning("⚠️ No Anthropic API key provided, using fallback responses")
+            logger.warning("⚠️ No Gemini API key provided, using fallback responses")
     
     async def generate_explanation(
         self, 
@@ -230,30 +229,30 @@ Be specific and actionable."""
         analysis_results: Dict[str, Any], 
         user_wallet: Optional[str] = None
     ) -> Dict[str, str]:
-        """Generate explanation asynchronously using Claude API"""
+        """Generate explanation asynchronously using Gemini API"""
         
-        # If Claude API is available, use it for enhanced explanations
-        if self.anthropic_client:
+        # If Gemini API is available, use it for enhanced explanations
+        if self.gemini_model:
             try:
-                return await self._generate_claude_explanation(analysis_results, user_wallet)
+                return await self._generate_gemini_explanation(analysis_results, user_wallet)
             except Exception as e:
-                logger.warning(f"Claude API failed, using fallback: {e}")
+                logger.warning(f"Gemini API failed, using fallback: {e}")
         
         # Fallback to rule-based explanation
         return self._generate_fallback_explanation(analysis_results)
     
-    async def _generate_claude_explanation(
+    async def _generate_gemini_explanation(
         self, 
         analysis_results: Dict[str, Any], 
         user_wallet: Optional[str] = None
     ) -> Dict[str, str]:
-        """Generate explanation using Claude API"""
+        """Generate explanation using Google Gemini API"""
         
         risk_level = analysis_results.get("risk_level", "UNKNOWN")
         risk_score = analysis_results.get("risk_score", 0)
         details = analysis_results.get("details", {})
         
-        # Format details for Claude
+        # Format details for Gemini
         details_summary = self._format_analysis_details(details)
         
         prompt = self.prompt_templates["transaction_analysis"].format(
@@ -263,24 +262,22 @@ Be specific and actionable."""
         )
         
         try:
-            response = await self.anthropic_client.messages.create(
-                model="claude-3-sonnet-20240229",
-                max_tokens=500,
-                temperature=0.3,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ]
+            # Generate content with Gemini
+            response = await asyncio.to_thread(
+                self.gemini_model.generate_content,
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    max_output_tokens=500,
+                    temperature=0.3,
+                )
             )
             
-            # Parse Claude's response
-            content = response.content[0].text
-            return self._parse_claude_explanation(content)
+            # Parse Gemini's response
+            content = response.text
+            return self._parse_ai_explanation(content)
             
         except Exception as e:
-            logger.error(f"Claude API error: {e}")
+            logger.error(f"Gemini API error: {e}")
             raise
     
     def _generate_fallback_explanation(self, analysis_results: Dict[str, Any]) -> Dict[str, str]:
@@ -357,34 +354,31 @@ Be specific and actionable."""
         context: Optional[Dict[str, Any]] = None,
         conversation_history: List[SecurityChatMessage] = None
     ) -> Dict[str, Any]:
-        """Process security query asynchronously using Claude API"""
+        """Process security query asynchronously using Gemini API"""
         
-        # If Claude API is available, use it for enhanced responses
-        if self.anthropic_client:
+        # If Gemini API is available, use it for enhanced responses
+        if self.gemini_model:
             try:
-                return await self._process_claude_query(message, context, conversation_history)
+                return await self._process_gemini_query(message, context, conversation_history)
             except Exception as e:
-                logger.warning(f"Claude API failed for query, using fallback: {e}")
+                logger.warning(f"Gemini API failed for query, using fallback: {e}")
         
         # Fallback to rule-based responses
         return self._process_fallback_query(message, context)
     
-    async def _process_claude_query(
+    async def _process_gemini_query(
         self,
         message: str,
         context: Optional[Dict[str, Any]] = None,
         conversation_history: List[SecurityChatMessage] = None
     ) -> Dict[str, Any]:
-        """Process query using Claude API with intent classification"""
+        """Process query using Gemini API with intent classification"""
         
         # Classify intent and select appropriate template
         intent = self._classify_intent(message)
         template = self.prompt_templates.get(intent, self.prompt_templates["general_security"])
         
-        # Build conversation context
-        conversation_context = self._build_conversation_context(conversation_history)
-        
-        # Format context for Claude
+        # Format context for Gemini
         context_str = json.dumps(context, indent=2) if context else "No additional context"
         
         prompt = template.format(
@@ -393,28 +387,27 @@ Be specific and actionable."""
         )
         
         # Add conversation history if available
-        messages = []
-        if conversation_context:
-            messages.extend(conversation_context)
-        
-        messages.append({
-            "role": "user",
-            "content": prompt
-        })
+        if conversation_history:
+            history_context = "\n\nPrevious conversation:\n"
+            for msg in conversation_history[-5:]:
+                history_context += f"{msg.role}: {msg.content}\n"
+            prompt = history_context + "\n" + prompt
         
         try:
-            response = await self.anthropic_client.messages.create(
-                model="claude-3-sonnet-20240229",
-                max_tokens=800,
-                temperature=0.4,
-                messages=messages
+            response = await asyncio.to_thread(
+                self.gemini_model.generate_content,
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    max_output_tokens=800,
+                    temperature=0.4,
+                )
             )
             
-            content = response.content[0].text
-            return self._parse_claude_query_response(content, intent)
+            content = response.text
+            return self._parse_ai_query_response(content, intent)
             
         except Exception as e:
-            logger.error(f"Claude API error in query processing: {e}")
+            logger.error(f"Gemini API error in query processing: {e}")
             raise
     
     def _process_fallback_query(
@@ -602,8 +595,8 @@ Be specific and actionable."""
         
         return "\n".join(formatted_parts) if formatted_parts else "No detailed analysis available"
     
-    def _parse_claude_explanation(self, content: str) -> Dict[str, str]:
-        """Parse Claude's explanation response"""
+    def _parse_ai_explanation(self, content: str) -> Dict[str, str]:
+        """Parse AI explanation response"""
         try:
             # Try to extract structured explanation and recommendation
             lines = content.strip().split('\n')
@@ -661,8 +654,8 @@ Be specific and actionable."""
                 "recommendation": "Review the analysis carefully and proceed with appropriate caution."
             }
     
-    def _parse_claude_query_response(self, content: str, intent: str) -> Dict[str, Any]:
-        """Parse Claude's query response"""
+    def _parse_ai_query_response(self, content: str, intent: str) -> Dict[str, Any]:
+        """Parse AI query response"""
         try:
             # Extract recommendations if present
             recommendations = []
@@ -701,11 +694,11 @@ Be specific and actionable."""
             return {
                 "message": content.strip(),
                 "recommendations": recommendations[:5],  # Limit to 5 recommendations
-                "confidence": 0.9  # High confidence for Claude responses
+                "confidence": 0.9  # High confidence for Gemini responses
             }
             
         except Exception as e:
-            logger.warning(f"Failed to parse Claude query response: {e}")
+            logger.warning(f"Failed to parse Gemini query response: {e}")
             return {
                 "message": content.strip(),
                 "recommendations": ["Follow security best practices"],
@@ -749,5 +742,5 @@ Be specific and actionable."""
             "cache_misses": self.cache_misses,
             "cache_hit_rate": cache_hit_rate,
             "active_conversations": len(self.conversation_contexts),
-            "anthropic_client_available": self.anthropic_client is not None
+            "gemini_available": self.gemini_model is not None
         }

@@ -132,7 +132,7 @@ class Settings(BaseSettings):
     solana_network: str = "devnet"
     
     # AI Services
-    anthropic_api_key: str = ""
+    gemini_api_key: str = ""
     openai_api_key: str = ""
     
     # Database
