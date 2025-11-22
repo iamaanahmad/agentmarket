@@ -1,0 +1,133 @@
+2025-11-22T10:56:42.803Z [INFO]: ## Starting Frontend Build
+
+41
+
+                                 # Starting phase: preBuild
+
+42
+
+2025-11-22T10:56:42.803Z [INFO]: # Executing command: echo "Installing dependencies..."
+
+43
+
+                                 Installing dependencies...
+
+44
+
+                                 # Executing command: npm ci --legacy-peer-deps
+
+45
+
+2025-11-22T10:56:59.584Z [WARNING]: npm error code EUSAGE
+
+46
+
+2025-11-22T10:56:59.589Z [WARNING]: npm error
+
+47
+
+                                    npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+
+48
+
+                                    npm error
+
+49
+
+                                    npm error Missing: @types/swagger-ui-react@4.19.0 from lock file
+
+50
+
+                                    npm error
+
+51
+
+                                    npm error Clean install a project
+
+52
+
+                                    npm error
+
+53
+
+                                    npm error Usage:
+
+54
+
+                                    npm error npm ci
+
+55
+
+                                    npm error
+
+56
+
+                                    npm error Options:
+
+57
+
+                                    npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+
+58
+
+                                    npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+
+59
+
+                                    npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+
+60
+
+                                    npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+
+61
+
+                                    npm error [--no-bin-links] [--no-fund] [--dry-run]
+
+62
+
+                                    npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+
+63
+
+                                    npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+
+64
+
+                                    npm error
+
+65
+
+                                    npm error aliases: clean-install, ic, install-clean, isntall-clean
+
+66
+
+                                    npm error
+
+67
+
+                                    npm error Run "npm help ci" for more info
+
+68
+
+                                    npm error A complete log of this run can be found in: /root/.npm/_logs/2025-11-22T10_56_46_530Z-debug-0.log
+
+69
+
+2025-11-22T10:56:59.663Z [ERROR]: !!! Build failed
+
+70
+
+2025-11-22T10:56:59.664Z [INFO]: Please read more about Amplify Hosting's support for SSR frameworks to find if your build failure is related to an unsupported feature: https://docs.aws.amazon.com/amplify/latest/userguide/amplify-ssr-framework-support.html. You may also find this troubleshooting guide useful: https://docs.aws.amazon.com/amplify/latest/userguide/troubleshooting-ssr-deployment.html
+
+71
+
+2025-11-22T10:56:59.664Z [ERROR]: !!! Error: Command failed with exit code 1
+
+72
+
+2025-11-22T10:56:59.664Z [INFO]: # Starting environment caching...
+
+73
+
+2025-11-22T10:56:59.664Z [INFO]: # Environment caching completed
