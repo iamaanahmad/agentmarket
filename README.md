@@ -54,7 +54,7 @@ AgentMarket makes AI expertise consumable, transparent, and accountable by packa
 - Next.js API routes (Express-style middleware)
 - Node.js, PostgreSQL (AWS RDS via `DATABASE_URL`), Redis caching
 - FastAPI microservice powering SecurityGuard AI
-- Claude Sonnet 3.5 for natural language insights in `security-ai`
+- Google Gemini 1.5 Flash for natural language insights in `security-ai`
 
 ### Blockchain Layer
 - Anchor programs (`programs/agent-registry`, `marketplace-escrow`, `reputation-system`, `royalty-splitter`)
@@ -73,7 +73,7 @@ AgentMarket makes AI expertise consumable, transparent, and accountable by packa
 
 ```
 User Wallet → Next.js Frontend ↔ Next.js API ↔ PostgreSQL / Redis
-                           ↘ SecurityGuard AI (FastAPI + Claude)
+                           ↘ SecurityGuard AI (FastAPI + Gemini)
                            ↘ Solana Anchor Programs (escrow, registry, reputation, royalties)
                            ↘ AWS Amplify + Kubernetes services
 ```
@@ -109,7 +109,7 @@ NEXT_PUBLIC_SOLANA_NETWORK=devnet
 NEXT_PUBLIC_SOLANA_RPC_ENDPOINT=https://api.devnet.solana.com
 DATABASE_URL=postgresql://user:pass@host:5432/agentmarket
 REDIS_URL=redis://localhost:6379
-CLAUDE_API_KEY=your-key
+GEMINI_API_KEY=your-key
 ```
 
 Run the development stack:
@@ -170,7 +170,7 @@ WebSocket /api/security/ws  # real-time threat streaming
 ### AWS Amplify (primary)
 1. Push to GitHub with clear commit message.
 2. Configure Amplify app via AWS console.
-3. Set env vars (`NEXT_PUBLIC_SOLANA_NETWORK`, `DATABASE_URL`, `CLAUDE_API_KEY`, etc.)
+3. Set env vars (`NEXT_PUBLIC_SOLANA_NETWORK`, `DATABASE_URL`, `GEMINI_API_KEY`, etc.)
 4. Amplify auto-builds with `npm ci && npm run build`.
 5. **Production URL:** `https://main.d1qz5jyb1c9oee.amplifyapp.com`
 
@@ -199,7 +199,7 @@ Use `scripts/production_deploy.sh` for scripted releases and `scripts/deploy.sh`
 
 - CSP headers + input validation guard XSS/SQL injection.
 - Rate limiting + Redis caching prevent brute-force payloads.
-- SecurityGuard AI uses Claude Sonnet 3.5 with explainable reporting.
+- SecurityGuard AI uses Google Gemini 1.5 Flash with explainable reporting.
 - Smart contracts audited pre-mainnet; multi-sig upgrades and owner roles.
 - Observability includes Prometheus, Grafana + Loki (via `monitoring/grafana/dashboards`).
 
@@ -352,7 +352,7 @@ Made with 🚀 for Solana + AWS Global Vibe Hackathon 2025.# 🚀 AgentMarket - 
 ✅ PostgreSQL (AWS RDS)
 ✅ Redis (Caching)
 ✅ FastAPI (SecurityGuard AI)
-✅ Claude Sonnet 3.5 (LLM)
+✅ Google Gemini 1.5 Flash (LLM)
 ```
 
 ### Blockchain
@@ -485,10 +485,10 @@ Amplify   Solana RPC    PostgreSQL      Escrow Program
 
 | Program | Address | Purpose |
 |---------|---------|---------|
-| **Agent Registry** | `8RDfVnQJiW7Nn9qbWubNUVJh6B7fmgxCY86TqjSHjTuu` | Register AI agents as NFTs |
-| **Marketplace Escrow** | `8HQ4FBCBjf5jqCW6DNYjpAK4BGujAHD9MWH8bitVK2EV` | Manage payments & disputes |
-| **Reputation System** | `EXvxVW73eF359VWGeCM3hV431uaFyXvKbHzKqgjYJCVY` | Track ratings on-chain |
-| **Royalty Splitter** | `5VRG5k7ad2DgyMFYfZ7QCN3AJPtuoH7WiJukc8ueddHL` | Distribute creator earnings |
+| **Agent Registry** | `Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS` | Register AI agents as NFTs |
+| **Marketplace Escrow** | `2ZuJbvYqvhXq7N7WjKw3r4YqkU3r7CmLGjXXvKhGz3xF` | Manage payments & disputes |
+| **Reputation System** | `8L8pDf3jutdpdr4m3np68CL9ZroLActrqwxi6s9Sk5ML` | Track ratings on-chain |
+| **Royalty Splitter** | `5xot9PVkphiX2adznghwrAuxGs2zeWisNSxMW6hU6Hkj` | Distribute creator earnings |
 
 ### Contract Features
 ```

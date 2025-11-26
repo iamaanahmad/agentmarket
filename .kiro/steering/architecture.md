@@ -205,7 +205,7 @@ pub struct Rating {
 - 71-100: DANGER 🚨
 
 #### 7. Natural Language Explanation
-- Claude Sonnet 4 generates human-readable explanation
+- Google Gemini 1.5 Flash generates human-readable explanation
 - Specific risks identified
 - Evidence for flagging
 - Clear recommendation
@@ -328,7 +328,7 @@ User → Paste Transaction → Click Scan
   → API Route → Python AI Service
   → Parse transaction → Check patterns
   → Run ML model → Analyze accounts
-  → Calculate risk score → Generate explanation (Claude)
+  → Calculate risk score → Generate explanation (Gemini)
   → Return result → Display to user
   → Save to scan_history
 ```
@@ -351,7 +351,7 @@ User → Paste Transaction → Click Scan
 
 ### External Services
 - **IPFS**: Decentralized storage for agent code/models
-- **Anthropic API**: Claude Sonnet 4 for NLP
+- **Google AI API**: Gemini 1.5 Flash for NLP
 - **Pinecone**: Vector database for semantic search
 
 ## Security Considerations

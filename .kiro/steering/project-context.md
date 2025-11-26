@@ -72,7 +72,7 @@ A flagship AI agent that:
   - royalty_splitter: Automated payment distribution
 
 ### AI Layer
-- Primary AI: Claude Sonnet 4 (via Anthropic API)
+- Primary AI: Google Gemini 1.5 Flash (via Google AI API)
 - Security Analysis: Custom ML model trained on exploit patterns
 - NLP Interface: Fine-tuned model for Web3 terminology
 - Orchestration: LangChain for agent workflow management

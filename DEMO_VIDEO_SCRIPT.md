@@ -57,14 +57,14 @@
 - Show statistic graphic: "$2 BILLION LOST"
 
 #### What to Say:
-```
+
 "In 2024, cryptocurrency users lost over $2 billion to wallet exploits 
 and malicious smart contracts. At the same time, despite $637 million 
 invested in AI agents, there's no trusted marketplace where creators 
 can monetize their AI models and users can find verified AI services.
 
 What if we could solve both problems with one platform?"
-```
+
 
 #### Action Steps:
 1. Open browser with Google search "crypto hacks 2024" visible
@@ -90,14 +90,14 @@ Browser → localhost:3000 → Homepage loads
 ```
 
 #### What to Say:
-```
+
 "Meet AgentMarket - the first decentralized AI agent marketplace 
 built on Solana. Here, AI creators register their agents as NFTs, 
 users hire them with cryptocurrency, and smart contracts ensure fair 
 payment through on-chain reputation and automated escrow.
 
 Let me show you how it works."
-```
+
 
 #### Action Steps:
 1. Type "localhost:3000" in address bar (or click if already open)
@@ -128,14 +128,14 @@ Marketplace → Click on "SecurityGuard AI" agent card
 ```
 
 #### What to Say:
-```
+
 "The marketplace displays all available AI agents. Each agent shows 
 their capabilities, pricing, and on-chain reputation. You can search 
 and filter by capability, price, or rating.
 
 Let's look at SecurityGuard - our flagship agent that protects users 
 from wallet exploits in real-time."
-```
+
 
 #### Action Steps:
 1. Click "Explore Agents" button (or navigate to /marketplace)
@@ -167,7 +167,7 @@ Stay on agent profile page
 ```
 
 #### What to Say:
-```
+
 "Each agent has a detailed profile. SecurityGuard costs 0.01 SOL per 
 scan - about $2. It has a 4.8-star rating from real users and has 
 completed over 500 security scans.
@@ -175,7 +175,7 @@ completed over 500 security scans.
 The capabilities show it specializes in transaction analysis, wallet 
 drainer detection, and risk assessment. All this information is 
 stored on-chain, making it transparent and tamper-proof."
-```
+
 
 #### Action Steps:
 1. Point out (hover over or briefly highlight):
@@ -211,14 +211,14 @@ Wallet connects → Paste transaction → Click "Scan Now"
 ```
 
 #### What to Say:
-```
+
 "To hire an agent, I'll click 'Hire Now'. This opens a modal where 
 I connect my Solana wallet - in this case, Phantom.
 
 Now I'll paste a suspicious transaction I want SecurityGuard to 
 analyze before I sign it. This could be from any dApp - a token 
 swap, NFT mint, or DeFi interaction."
-```
+
 
 #### Action Steps:
 1. Click "Hire Now" button
@@ -255,9 +255,9 @@ Results display with risk analysis
 ```
 
 #### What to Say:
-```
+
 "SecurityGuard analyzes the transaction in under 2 seconds using 
-machine learning and Claude AI.
+machine learning and Google Gemini AI.
 
 The results show DANGER with a risk score of 95 out of 100. The 
 analysis detected this transaction would grant unlimited token 
@@ -268,7 +268,7 @@ SecurityGuard just saved my wallet from being drained. And here's
 the best part: the payment was automatically split by our smart 
 contracts - 85% goes to the agent creator, 10% to the platform, 
 and 5% to the treasury."
-```
+
 
 #### Action Steps:
 1. Wait for results to load (show loading animation)
@@ -304,12 +304,12 @@ Dashboard shows request history
 ```
 
 #### What to Say:
-```
+
 "All requests are tracked in your dashboard. You can see the status, 
 view results again, and even rate the agent after service completion. 
 This builds on-chain reputation that helps other users make informed 
 decisions."
-```
+
 
 #### Action Steps:
 1. Click "Dashboard" or "My Requests" in navigation
@@ -345,7 +345,7 @@ Open files: requirements.md, design.md, tasks.md
 ```
 
 #### What to Say:
-```
+
 "AgentMarket was built using spec-driven development with Kiro IDE. 
 Every feature started as a detailed specification.
 
@@ -358,7 +358,7 @@ system diagrams and component interactions.
 And tasks.md breaks down the implementation into 40+ granular tasks, 
 all tracked from specification to completion. This systematic approach 
 ensured quality and made the complex simple."
-```
+
 
 #### Action Steps:
 1. **Switch to VS Code** (Alt+Tab or click taskbar)
@@ -396,23 +396,23 @@ Show: agent-registry, marketplace-escrow, reputation-system, royalty-splitter
 ```
 
 #### What to Say:
-```
+
 "Under the hood, AgentMarket runs on four Solana smart contracts: 
 Agent Registry for NFT-based agent ownership, Marketplace Escrow for 
 secure payments, Reputation System for on-chain ratings, and Royalty 
 Splitter for automatic payment distribution.
 
 All contracts are deployed and verified on Solana devnet."
-```
+
 
 #### Action Steps:
 1. **Switch back to browser** (Alt+Tab)
 2. **Open new tab** → Solana Explorer
 3. **Show program IDs** (have them bookmarked):
-   - Agent Registry: `8RDfVnQJiW7Nn9qbWubNUVJh6B7fmgxCY86TqjSHjTuu`
-   - Marketplace Escrow: `8HQ4FBCBjf5jqCW6DNYjpAK4BGujAHD9MWH8bitVK2EV`
-   - Reputation System: `EXvxVW73eF359VWGeCM3hV431uaFyXvKbHzKqgjYJCVY`
-   - Royalty Splitter: `5VRG5k7ad2DgyMFYfZ7QCN3AJPtuoH7WiJukc8ueddHL`
+   - Agent Registry: `Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS`
+   - Marketplace Escrow: `2ZuJbvYqvhXq7N7WjKw3r4YqkU3r7CmLGjXXvKhGz3xF`
+   - Reputation System: `8L8pDf3jutdpdr4m3np68CL9ZroLActrqwxi6s9Sk5ML`
+   - Royalty Splitter: `5xot9PVkphiX2adznghwrAuxGs2zeWisNSxMW6hU6Hkj`
 4. **Click on one contract** to show it's verified
 5. **Scroll briefly** to show transaction history
 6. **Return to AgentMarket homepage** for closing
@@ -440,7 +440,7 @@ Prepare for fade to closing screen
 ```
 
 #### What to Say:
-```
+
 "AgentMarket solves real problems. It prevents billions in wallet 
 exploits, empowers AI creators to monetize their work, and makes 
 Web3 accessible to everyone through natural language interfaces.
@@ -452,7 +452,7 @@ with Kiro IDE.
 
 Visit our GitHub to explore the code, or try the demo yourself. 
 Thank you."
-```
+
 
 #### Action Steps:
 1. **Navigate back** to AgentMarket homepage
