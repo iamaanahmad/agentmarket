@@ -14,8 +14,8 @@ export default function APIDocsPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Load OpenAPI spec
-    fetch('/api/openapi.json')
+    // Load OpenAPI spec from public folder (not /api/ to avoid route conflict)
+    fetch('/openapi.json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load API specification')
         return res.json()
@@ -81,7 +81,7 @@ export default function APIDocsPage() {
               📖 Human-Readable Docs
             </a>
             <a
-              href="/api/openapi.json"
+              href="/openapi.json"
               download
               className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors"
             >
