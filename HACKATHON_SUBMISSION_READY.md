@@ -2,6 +2,7 @@
 
 ## AWS Global Vibe: AI Coding Hackathon 2025
 **Project:** AgentMarket - Decentralized AI Agent Marketplace  
+**Live Demo:** [https://main.d1qz5jyb1c9oee.amplifyapp.com](https://main.d1qz5jyb1c9oee.amplifyapp.com)  
 **Status:** ✅ READY TO SUBMIT  
 **Completion:** 98% (Only demo video remaining)  
 **Predicted Score:** 92/100 (A- Grade, Top Tier)
@@ -83,14 +84,14 @@
 - [x] Complete .kiro folder structure (requirements.md, design.md, tasks.md)
 - [x] Kiro IDE usage documentation throughout development
 - [x] All Web3 AI Integration Track requirements met
-- [x] Smart contracts deployed and tested on Solana
-- [x] Frontend application fully functional
-- [x] Backend API with all endpoints operational
-- [x] SecurityGuard AI transaction analysis working
+- [x] Smart contracts deployed and tested on Solana Devnet
+- [x] Frontend application fully functional and deployed
+- [x] Backend API with all 7 endpoints operational
+- [x] SecurityGuard AI transaction analysis working (<2s response)
 - [x] Database schema and seed data ready
-- [x] AWS Amplify deployment configured
+- [x] AWS Amplify deployment LIVE at https://main.d1qz5jyb1c9oee.amplifyapp.com
 - [x] Comprehensive documentation package
-- [x] Professional README and API documentation
+- [x] Professional README with live links and explorer URLs
 - [x] Demo video script prepared
 
 ### 🎬 REMAINING TASK (CRITICAL)

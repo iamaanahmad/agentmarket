@@ -22,6 +22,7 @@
 - [ ] Prepare a test transaction for SecurityGuard scanning
 - [ ] Have demo wallet with devnet SOL connected
 - [ ] Test all flows once before recording
+- [ ] Live URL: https://main.d1qz5jyb1c9oee.amplifyapp.com
 
 **3. Screen & Audio**
 - [ ] Set screen resolution to 1920x1080 (Full HD)
@@ -468,7 +469,7 @@ Thank you."
    ⚡ Solana | ☁️ AWS | 🤖 Kiro IDE
    
    🔗 github.com/iamaanahmad/agentmarket
-   🌐 [Your demo URL if deployed]
+   🌐 main.d1qz5jyb1c9oee.amplifyapp.com
    ```
 5. **Fade to black** with text overlay
 6. **Hold for 3 seconds**

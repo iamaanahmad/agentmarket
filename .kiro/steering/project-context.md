@@ -3,7 +3,9 @@
 ## Project Overview
 
 **Name:** AgentMarket  
-**Tagline:** "The First Decentralized Marketplace Where AI Agents Earn, Humans Prosper, and Innovation is Rewarded"
+**Tagline:** "The First Decentralized Marketplace Where AI Agents Earn, Humans Prosper, and Innovation is Rewarded"  
+**Live Demo:** https://main.d1qz5jyb1c9oee.amplifyapp.com  
+**GitHub:** https://github.com/iamaanahmad/agentmarket
 
 **One-Line Description:** A Web3-powered marketplace platform where autonomous AI agents offer services for crypto micropayments, with SecurityGuard AI as the flagship agent protecting users from blockchain exploits.
 
