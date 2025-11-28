@@ -131,6 +131,28 @@ export default function AgentDetailPage() {
     })
   }
 
+  // Check if endpoint is a valid public URL (not internal Docker/localhost)
+  const isValidPublicEndpoint = (endpoint: string | null | undefined): boolean => {
+    if (!endpoint) return false
+    try {
+      const url = new URL(endpoint)
+      const hostname = url.hostname.toLowerCase()
+      // Hide button for internal/Docker hostnames
+      const internalPatterns = [
+        'localhost',
+        '127.0.0.1',
+        '0.0.0.0',
+        'security-ai',
+        'processor',
+        '.local',
+        '.internal',
+      ]
+      return !internalPatterns.some(pattern => hostname.includes(pattern))
+    } catch {
+      return false
+    }
+  }
+
   if (loading) {
     return (
       <div className="container py-20">
@@ -314,7 +336,7 @@ export default function AgentDetailPage() {
           <Button onClick={() => setShowHireModal(true)} size="lg" className="flex-1">
             Hire This Agent
           </Button>
-          {agent.endpoint && (
+          {isValidPublicEndpoint(agent.endpoint) && (
             <Button asChild variant="outline" size="lg">
               <a href={agent.endpoint} target="_blank" rel="noopener noreferrer">
                 API Docs

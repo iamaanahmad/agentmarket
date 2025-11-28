@@ -18,11 +18,18 @@
 - [ ] Zoom to 100% (Ctrl+0)
 
 **2. Prepare Demo Data**
-- [ ] Have at least 3-5 agents in database
-- [ ] Prepare a test transaction for SecurityGuard scanning
-- [ ] Have demo wallet with devnet SOL connected
-- [ ] Test all flows once before recording
+- [ ] Have at least 3-5 agents in database (including SecurityGuard AI)
+- [ ] Prepare test request text: "Please analyze this wallet for security risks: 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+- [ ] Prepare test transaction for scanner: "danger test transaction" (triggers DANGER result)
+- [ ] Have demo wallet with devnet SOL connected (Phantom recommended)
+- [ ] Test the full hire flow once before recording
 - [ ] Live URL: https://main.d1qz5jyb1c9oee.amplifyapp.com
+
+**Key UI Elements to Know:**
+- Agent card has two buttons: "View Details" and "Hire Agent"
+- Agent detail page has "Hire This Agent" button at bottom
+- Hire modal steps: Details → Confirm → Processing → Success
+- Security page scanner: type "danger" to get DANGER result, "caution" for CAUTION, anything else for SAFE
 
 **3. Screen & Audio**
 - [ ] Set screen resolution to 1920x1080 (Full HD)
@@ -120,12 +127,12 @@ Let me show you how it works."
 - Click "Explore Agents" or navigate to /marketplace
 - Show agent grid with multiple agents
 - Use search/filter briefly
-- Click on SecurityGuard agent
+- Click "View Details" on SecurityGuard agent card
 
 #### Navigation:
 ```
 Homepage → Click "Explore Agents" button → /marketplace
-Marketplace → Click on "SecurityGuard AI" agent card
+Marketplace → Click "View Details" on SecurityGuard AI card → /agents/[id]
 ```
 
 #### What to Say:
@@ -142,11 +149,11 @@ from wallet exploits in real-time."
 1. Click "Explore Agents" button (or navigate to /marketplace)
 2. Marketplace page loads - pause to show agent grid (3 seconds)
 3. Hover over search bar briefly
-4. Click one filter option (e.g., "Security") to show it works
-5. Clear filter
+4. Click "Security" filter in sidebar to show filtering works
+5. Clear filter (click X on badge)
 6. Scroll down slightly to show more agents
-7. Click on "SecurityGuard AI" agent card
-8. Agent profile page loads
+7. Find SecurityGuard AI card and click "View Details" button
+8. Agent detail page loads at /agents/[id]
 
 **Timing Check:** Stop at 1:40
 
@@ -156,39 +163,40 @@ from wallet exploits in real-time."
 **Duration:** 1:40 - 2:10 (30 seconds)
 
 #### Visual:
-- SecurityGuard agent profile page
-- Show rating, price, capabilities
-- Show description and stats
-- Scroll to reviews section briefly
+- SecurityGuard agent detail page (/agents/[id])
+- Show header with avatar, name, rating, response time
+- Show capability badges (Security, Analysis, Real-time)
+- Show "About This Agent" description
+- Show Pricing card and Agent Details card
 
 #### Navigation:
 ```
-/marketplace → /agents/[securityguard-id]
-Stay on agent profile page
+/agents/[securityguard-id] - Stay on agent detail page
 ```
 
 #### What to Say:
 
 "Each agent has a detailed profile. SecurityGuard costs 0.01 SOL per 
-scan - about $2. It has a 4.8-star rating from real users and has 
-completed over 500 security scans.
+scan - about $2. It has a 4.8-star rating from real users and shows 
+response time under 30 seconds.
 
-The capabilities show it specializes in transaction analysis, wallet 
-drainer detection, and risk assessment. All this information is 
-stored on-chain, making it transparent and tamper-proof."
+The capabilities show it specializes in Security, Analysis, and 
+Real-time scanning. You can see the creator's wallet address and 
+when the agent was registered - all transparent and on-chain."
 
 
 #### Action Steps:
-1. Point out (hover over or briefly highlight):
-   - Agent name and avatar
-   - Price: 0.01 SOL
-   - Rating: ⭐⭐⭐⭐⭐ 4.8/5.0
-   - Services completed: 500+
+1. Point out the header section:
+   - Agent avatar and name "SecurityGuard AI"
+   - "Active" badge (green)
+   - Rating: ⭐ 4.8 with rating count
+   - Response time: < 30s
+   - Capability badges: Security, Analysis, Real-time
 2. Scroll down to show:
-   - Capabilities badges
-   - Description text
-   - Reviews section (just show it exists, don't read)
-3. Scroll back to "Hire Now" button at top
+   - "About This Agent" card with description
+   - "Pricing" card showing 0.01 SOL per query
+   - "Agent Details" card with Agent ID, Creator Wallet, Registered date
+3. Scroll back up to show "Hire This Agent" button
 
 **Timing Check:** Stop at 2:10
 
@@ -198,92 +206,107 @@ stored on-chain, making it transparent and tamper-proof."
 **Duration:** 2:10 - 2:40 (30 seconds)
 
 #### Visual:
-- Click "Hire Now" button
-- Hire agent modal appears
-- Connect wallet (Phantom popup)
-- Paste transaction for analysis
-- Submit request
+- Click "Hire This Agent" button
+- Hire agent modal appears with agent info
+- Connect wallet (Phantom popup) if not connected
+- Type/paste request description in textarea
+- Click "Continue" then "Pay" to confirm
 
 #### Navigation:
 ```
-Agent Profile → Click "Hire Now" → Modal opens
-Modal → Click "Connect Wallet" → Phantom wallet popup
-Wallet connects → Paste transaction → Click "Scan Now"
+Agent Detail Page → Click "Hire This Agent" → Modal opens
+Modal Step 1 (Details): Shows agent rating, capabilities, request textarea
+Modal Step 2 (Confirm): Shows request summary and payment amount
+Modal Step 3 (Processing): "Creating service request..."
+Modal Step 4 (Success): Request ID displayed
 ```
 
 #### What to Say:
 
-"To hire an agent, I'll click 'Hire Now'. This opens a modal where 
-I connect my Solana wallet - in this case, Phantom.
+"To hire an agent, I'll click 'Hire This Agent'. This opens a modal 
+showing the agent's rating and capabilities.
 
-Now I'll paste a suspicious transaction I want SecurityGuard to 
-analyze before I sign it. This could be from any dApp - a token 
-swap, NFT mint, or DeFi interaction."
+I need to connect my Solana wallet first - using Phantom. Then I'll 
+describe my request. For SecurityGuard, I'll paste a wallet address 
+I want to analyze for security risks."
 
 
 #### Action Steps:
-1. Click "Hire Now" button
-2. Modal appears - pause (2 seconds)
-3. Click "Connect Wallet" button
-4. Phantom wallet popup appears
-5. Click "Connect" in Phantom (approve connection)
-6. Wallet connects - modal updates
-7. In transaction input field, paste pre-prepared transaction:
+1. Click "Hire This Agent" button (blue button at bottom)
+2. Modal appears showing:
+   - Agent rating (⭐ 4.8) and service count
+   - Response time (< 30s)
+   - Capability badges
+   - "Describe your request" textarea
+   - Service Cost: 0.01 SOL per query
+3. If wallet not connected, click "Select Wallet" button
+4. Phantom wallet popup appears → Click "Connect"
+5. In textarea, type or paste:
    ```
-   [Have a base64 transaction ready to paste]
+   Please analyze this wallet for security risks: 
+   7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
    ```
-8. Click "Scan Now" or "Submit" button
-9. Loading state appears
+6. Click "Continue" button
+7. Confirm screen shows request summary and total cost
+8. Click "Pay 0.01 SOL" button
 
 **Timing Check:** Stop at 2:40
 
 ---
 
-### **SCENE 6: SECURITYGUARD ANALYSIS RESULTS**
+### **SCENE 6: SERVICE REQUEST CREATED & SECURITY SCANNER DEMO**
 **Duration:** 2:40 - 3:20 (40 seconds)
 
 #### Visual:
-- Loading animation (2-3 seconds)
-- Results appear with risk visualization
-- Show DANGER rating with 95/100 risk score
-- Show detailed explanation
-- Show recommendation: "DO NOT SIGN"
+- Modal shows "Creating service request..." with spinner
+- Success screen appears with green checkmark
+- Toast notification shows Request ID
+- Close modal → Navigate to /security page
+- Demo the live SecurityGuard scanner with risk visualization
 
 #### Navigation:
 ```
-Stay on results page / Security page
-Results display with risk analysis
+Hire Modal → "Creating service request..." → Success with checkmark
+Toast: "Service request created! Request ID: req-XXXXX. SecurityGuard AI will start working on it."
+Close modal → Click "Security" in navbar → /security page
+Security page → Paste transaction → Scan → See results
 ```
 
 #### What to Say:
 
-"SecurityGuard analyzes the transaction in under 2 seconds using 
-machine learning and Google Gemini AI.
+"The system creates a service request and shows me the Request ID. 
+SecurityGuard AI will now process my request. The payment is held 
+in escrow until the work is complete.
 
-The results show DANGER with a risk score of 95 out of 100. The 
-analysis detected this transaction would grant unlimited token 
-approval to an unknown contract deployed just 2 days ago - classic 
-wallet drainer behavior.
-
-SecurityGuard just saved my wallet from being drained. And here's 
-the best part: the payment was automatically split by our smart 
-contracts - 85% goes to the agent creator, 10% to the platform, 
-and 5% to the treasury."
+Let me also show you the SecurityGuard scanner directly. On the 
+Security page, anyone can paste a transaction and get instant 
+analysis. Watch how it detects a dangerous wallet drainer..."
 
 
 #### Action Steps:
-1. Wait for results to load (show loading animation)
-2. Results appear - big DANGER indicator shows
-3. Pause on risk visualization (3 seconds)
-4. Point out key elements:
-   - Risk Level: DANGER (red)
-   - Risk Score: 95/100
-   - Explanation text (scroll if needed)
-   - Specific threats detected
-5. Scroll down to show:
-   - Detailed analysis
-   - Recommendation: "Block this transaction"
-6. Briefly show payment confirmation at bottom
+1. Watch modal show "Creating service request..." with spinner
+2. Success screen appears:
+   - Green checkmark icon
+   - "Request submitted successfully!"
+   - "SecurityGuard AI will start working on your request. You'll receive updates in your dashboard."
+3. Toast notification appears: "Service request created! Request ID: req-XXXXX..."
+4. Click "Close" button
+5. Navigate to /security page (click "Security" in navbar)
+6. Security page loads showing:
+   - Stats: Threats Blocked, Users Protected, Avg Response Time, Detection Accuracy
+   - Scanner tab is active by default
+7. In the transaction input area, paste:
+   ```
+   danger test transaction
+   ```
+   (The word "danger" triggers the mock dangerous result)
+8. Click "Scan Transaction" button
+9. Watch scanning animation with progress steps (3 seconds)
+10. Results appear showing:
+    - DANGER risk level (red badge)
+    - Risk Score: 85/100
+    - Explanation: "This transaction contains patterns matching known wallet drainer exploits..."
+    - Recommendation: "DO NOT SIGN this transaction..."
 
 **Timing Check:** Stop at 3:20
 
@@ -293,34 +316,43 @@ and 5% to the treasury."
 **Duration:** 3:20 - 3:40 (20 seconds)
 
 #### Visual:
-- Navigate to user dashboard
-- Show service request history
-- Show SecurityGuard request status: Completed
-- Show payment details
+- Navigate to /dashboard
+- Show statistics cards (Total Requests, Pending, Completed, Disputed, Total Spent)
+- Show Service Requests list with the request we just created
+- Show request details with Request ID, status, and amount
 
 #### Navigation:
 ```
-Security results → Navigate to /dashboard
-Dashboard shows request history
+/security → Click "Dashboard" in navbar → /dashboard
+Dashboard shows statistics and request history
 ```
 
 #### What to Say:
 
-"All requests are tracked in your dashboard. You can see the status, 
-view results again, and even rate the agent after service completion. 
-This builds on-chain reputation that helps other users make informed 
-decisions."
+"All requests are tracked in your dashboard. You can see statistics 
+at a glance - total requests, pending, completed, and total spent.
+
+Here's the request we just created with its Request ID and status. 
+You can click 'View Agent' to go back to the agent profile. This 
+transparent tracking builds trust in the marketplace."
 
 
 #### Action Steps:
-1. Click "Dashboard" or "My Requests" in navigation
-2. Dashboard loads showing request history
-3. Point out (hover):
-   - Request list with statuses
-   - Most recent SecurityGuard request: "Completed"
-   - Payment amount: 0.01 SOL
-4. Click on request to expand details (optional, if time)
-5. Show rating option (don't actually rate)
+1. Click "Dashboard" in the navigation bar
+2. Dashboard loads - wallet should already be connected
+3. Point out the statistics cards:
+   - Total Requests: shows count
+   - Pending: yellow number
+   - Completed: green number
+   - Disputed: red number (likely 0)
+   - Total Spent: shows SOL amount
+4. Scroll to "Service Requests" section
+5. Find the SecurityGuard request we just created:
+   - Shows agent name "SecurityGuard AI"
+   - Status badge (pending/completed)
+   - Request ID: req-XXXXX
+   - Created date and Amount: 0.01 SOL
+6. Point out "View Agent" button (don't click)
 
 **Timing Check:** Stop at 3:40
 
@@ -545,16 +577,27 @@ Thank you."
 |-------|----------|-------------|------------|
 | 1 | 0:00-0:30 | Hook & Problem | Show $2B statistic |
 | 2 | 0:30-1:00 | Introduce AgentMarket | Homepage tour |
-| 3 | 1:00-1:40 | Browse Marketplace | Navigate to agents |
-| 4 | 1:40-2:10 | Agent Profile | Show SecurityGuard |
-| 5 | 2:10-2:40 | Hire Agent | Wallet connection |
-| 6 | 2:40-3:20 | Analysis Results | Show DANGER rating |
-| 7 | 3:20-3:40 | Dashboard | Track requests |
+| 3 | 1:00-1:40 | Browse Marketplace | Click "View Details" on agent |
+| 4 | 1:40-2:10 | Agent Profile | Show SecurityGuard details |
+| 5 | 2:10-2:40 | Hire Agent | "Hire This Agent" → Modal flow |
+| 6 | 2:40-3:20 | Request Created + Scanner | Toast with Request ID → /security demo |
+| 7 | 3:20-3:40 | Dashboard | Show request tracking |
 | 8 | 3:40-4:10 | Kiro IDE | Show .kiro folder |
 | 9 | 4:10-4:30 | Smart Contracts | Solana Explorer |
 | 10 | 4:30-5:00 | Impact & Close | Call to action |
 
 **Total:** ~5 minutes
+
+### 🔄 ACTUAL USER FLOW SUMMARY
+```
+Homepage → "Explore Agents" → /marketplace
+         → Click "View Details" → /agents/[id]
+         → Click "Hire This Agent" → Modal opens
+         → Describe request → "Continue" → "Pay X SOL"
+         → "Creating service request..." → Success + Request ID
+         → Close → /security (demo scanner)
+         → /dashboard (see request tracking)
+```
 
 ---
 
@@ -711,10 +754,23 @@ Your video is ready to submit when:
 
 ---
 
-**Script Version:** 1.0  
-**Last Updated:** November 21, 2025  
+**Script Version:** 2.0 (Updated to match actual UI flow)  
+**Last Updated:** November 27, 2025  
 **Estimated Recording Time:** 2-4 hours (including retakes)  
 **Estimated Editing Time:** 2-4 hours  
 **Total Time Investment:** 4-8 hours  
+
+### 📋 QUICK REFERENCE - ACTUAL BUTTON NAMES
+| Location | Button Text | Action |
+|----------|-------------|--------|
+| Homepage | "Explore Agents" | Goes to /marketplace |
+| Agent Card | "View Details" | Goes to /agents/[id] |
+| Agent Card | "Hire Agent" | Opens hire modal directly |
+| Agent Detail | "Hire This Agent" | Opens hire modal |
+| Hire Modal | "Continue" | Goes to confirm step |
+| Hire Modal | "Pay X SOL" | Submits request |
+| Hire Modal | "Close" | Closes modal |
+| Navbar | "Security" | Goes to /security |
+| Navbar | "Dashboard" | Goes to /dashboard |
 
 🎬 **NOW GO RECORD YOUR WINNING VIDEO!** 🚀
