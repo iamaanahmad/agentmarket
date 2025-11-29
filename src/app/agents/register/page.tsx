@@ -347,12 +347,8 @@ export default function RegisterAgentPage() {
         <div className="mt-6 text-center text-sm text-muted-foreground">
           <p>
             Need help? Check out our{' '}
-            <Link href="/docs" className="text-primary hover:underline">
-              documentation
-            </Link>{' '}
-            or{' '}
-            <Link href="/support" className="text-primary hover:underline">
-              contact support
+            <Link href="/api-docs" className="text-primary hover:underline">
+              API documentation
             </Link>
           </p>
         </div>
