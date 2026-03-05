@@ -12,8 +12,8 @@ frontend:
         - echo "Cleaning npm cache and SWC cache..."
         - npm cache clean --force
         - rm -rf /root/.cache/next-swc || true
-        - echo "Installing dependencies (excluding optional native modules)..."
-        - npm ci --legacy-peer-deps --include=dev --omit=optional
+        - echo "Installing dependencies..."
+        - npm ci --legacy-peer-deps
         - echo "Pre-installing Next.js SWC compiler with retry logic..."
         - |
           for i in 1 2 3; do
