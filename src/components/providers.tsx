@@ -7,9 +7,10 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import {
   PhantomWalletAdapter,
+} from '@solana/wallet-adapter-phantom'
+import {
   SolflareWalletAdapter,
-  // BackpackWalletAdapter,
-} from '@solana/wallet-adapter-wallets'
+} from '@solana/wallet-adapter-solflare'
 import { clusterApiUrl } from '@solana/web3.js'
 import { ThemeProvider } from 'next-themes'
 
