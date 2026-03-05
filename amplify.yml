@@ -9,8 +9,25 @@ frontend:
         - node --version
         - echo "npm version:"
         - npm --version
+        - echo "Cleaning npm cache and SWC cache..."
+        - npm cache clean --force
+        - rm -rf /root/.cache/next-swc || true
         - echo "Installing dependencies..."
         - npm ci --legacy-peer-deps --omit=optional
+        - echo "Pre-installing Next.js SWC compiler with retry logic..."
+        - |
+          for i in 1 2 3; do
+            echo "Attempt $i: Installing @next/swc-linux-x64-gnu@14.0.3"
+            if npm install --no-save --force @next/swc-linux-x64-gnu@14.0.3; then
+              echo "SWC compiler installed successfully"
+              break
+            else
+              echo "Attempt $i failed, cleaning cache and retrying..."
+              npm cache clean --force
+              rm -rf /root/.cache/next-swc || true
+              sleep 2
+            fi
+          done
         - echo "Dependencies installed successfully"
     build:
       commands:
@@ -47,6 +64,8 @@ env:
     # Build Configuration
     NODE_ENV: production
     NEXT_TELEMETRY_DISABLED: 1
+    NEXT_SKIP_NATIVE_POSTINSTALL: 1
+    SWC_BINARY_PATH: /codebuild/output/src2198129213/src/agentmarket/node_modules/@next/swc-linux-x64-gnu
     
     # Application Metadata
     NEXT_PUBLIC_APP_NAME: AgentMarket
