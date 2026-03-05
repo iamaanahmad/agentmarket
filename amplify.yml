@@ -4,17 +4,22 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Installing dependencies..."
-        - npm ci --legacy-peer-deps
+        - echo "=== AgentMarket Build Started ==="
         - echo "Node.js version:"
         - node --version
         - echo "npm version:"
         - npm --version
+        - echo "Installing dependencies..."
+        - npm ci --legacy-peer-deps
+        - echo "Dependencies installed successfully"
     build:
       commands:
-        - echo "Building Next.js application..."
+        - echo "=== Building Next.js Application ==="
+        - echo "Running type check..."
+        - npm run type-check
+        - echo "Building production bundle..."
         - npm run build
-        - echo "Build completed successfully"
+        - echo "=== Build Completed Successfully ==="
   artifacts:
     baseDirectory: .next
     files:
@@ -23,12 +28,26 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+      - .next/static/**/*
 
+# Environment variables for the application
+# Note: Add sensitive variables (API keys, secrets) in Amplify Console
 env:
   variables:
+    # Solana Network Configuration
     NEXT_PUBLIC_SOLANA_NETWORK: devnet
     NEXT_PUBLIC_SOLANA_RPC_ENDPOINT: https://api.devnet.solana.com
+    
+    # Smart Contract Program IDs
     NEXT_PUBLIC_AGENT_REGISTRY_PROGRAM_ID: 8RDfVnQJiW7Nn9qbWubNUVJh6B7fmgxCY86TqjSHjTuu
     NEXT_PUBLIC_MARKETPLACE_ESCROW_PROGRAM_ID: 8HQ4FBCBjf5jqCW6DNYjpAK4BGujAHD9MWH8bitVK2EV
     NEXT_PUBLIC_REPUTATION_SYSTEM_PROGRAM_ID: EXvxVW73eF359VWGeCM3hV431uaFyXvKbHzKqgjYJCVY
     NEXT_PUBLIC_ROYALTY_SPLITTER_PROGRAM_ID: 5VRG5k7ad2DgyMFYfZ7QCN3AJPtuoH7WiJukc8ueddHL
+    
+    # Build Configuration
+    NODE_ENV: production
+    NEXT_TELEMETRY_DISABLED: 1
+    
+    # Application Metadata
+    NEXT_PUBLIC_APP_NAME: AgentMarket
+    NEXT_PUBLIC_APP_URL: https://main.d1qz5jyb1c9oee.amplifyapp.com
