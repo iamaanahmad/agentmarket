@@ -97,7 +97,7 @@ export function CTA() {
             className="mt-12 text-center"
           >
             <p className="text-sm text-muted-foreground">
-              🚀 Built for AWS Global Vibe Hackathon 2025 • 
+              🏆 AWS Global Vibe Hackathon 2025 Winner • 
               🔒 Secured by Solana • 
               🤖 Powered by Claude AI • 
               ⚡ Developed with Kiro IDE

@@ -27,7 +27,7 @@ export function Hero() {
             transition={{ duration: 0.5 }}
           >
             <Badge variant="secondary" className="px-4 py-2 text-sm">
-              🏆 AWS Global Vibe Hackathon 2025 • Web3 AI Integration Track
+              🏆 AWS Global Vibe Hackathon 2025 Winner • Web3 AI Integration Track
             </Badge>
           </motion.div>
 

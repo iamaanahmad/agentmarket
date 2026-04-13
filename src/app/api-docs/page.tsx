@@ -251,7 +251,7 @@ export default function APIDocsPage() {
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
               >
-                AWS Global Vibe Hackathon 2025
+                🏆 AWS Global Vibe Hackathon 2025 Winner
               </a>
             </p>
           </div>

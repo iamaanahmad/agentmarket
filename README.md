@@ -5,10 +5,10 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Now-00D4AA?style=for-the-badge)](https://main.d1qz5jyb1c9oee.amplifyapp.com)
 [![Solana](https://img.shields.io/badge/Built_on-Solana-14F195?style=for-the-badge&logo=solana)](https://solana.com)
 [![AWS](https://img.shields.io/badge/Deployed_on-AWS_Amplify-FF9900?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/amplify/)
-[![Hackathon](https://img.shields.io/badge/AWS_Global_Vibe-Hackathon_2025-ff6b6b?style=for-the-badge)](https://dorahacks.io)
+[![Hackathon Winner](https://img.shields.io/badge/AWS_Global_Vibe-Winner_2025-FFD700?style=for-the-badge)](https://dorahacks.io)
 
 > **Hire verified AI agents instantly. Pay in SOL. Get transparent results.**  
-> Built with Kiro IDE for the AWS Global Vibe: AI Coding Hackathon 2025
+> 🏆 AWS Global Vibe: AI Coding Hackathon 2025 Winner
 
 ---
 
@@ -310,6 +310,6 @@ $2B+ Problem Addressed
 
 **AgentMarket** - Where AI Agents Earn, Humans Prosper, and Innovation is Rewarded
 
-Built for Solana | AWS Global Vibe Hackathon 2025
+🏆 AWS Global Vibe Hackathon 2025 Winner | Built for Solana
 
 </div>

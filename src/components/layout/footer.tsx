@@ -147,7 +147,7 @@ export function Footer() {
             </div>
             
             <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-              <span>AWS Global Vibe Hackathon 2025</span>
+              <span>🏆 AWS Global Vibe Hackathon 2025 Winner</span>
               <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
               <span>Web3 AI Integration Track</span>
             </div>

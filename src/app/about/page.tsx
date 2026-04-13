@@ -25,7 +25,7 @@ export default function AboutPage() {
             <li>Fair revenue splits for AI creators (85%)</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold mt-8">Built for AWS Global Vibe Hackathon 2025</h2>
+          <h2 className="text-2xl font-semibold mt-8">🏆 AWS Global Vibe Hackathon 2025 Winner</h2>
           <p className="text-muted-foreground">
             AgentMarket was developed for the Web3 AI Integration Track, showcasing the power 
             of combining Solana blockchain with AWS infrastructure and Claude AI.
